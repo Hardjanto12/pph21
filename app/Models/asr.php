@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class asr extends Model
+{
+    use HasFactory;
+    protected $fillable = ['asr', 'name'];
+    protected $table = 'asr';
+    public $timestamps = false;
+}
