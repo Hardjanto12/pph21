@@ -24,10 +24,13 @@ class kryController extends Controller
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
             $data = kry::where('kry', 'like', "%$katakunci%")
-                ->orWhere('name', 'like', "%$katakunci%")
+                ->orWhere('nik', 'like', "%$katakunci%")
+                ->orWhere('dvs', 'like', "%$katakunci%")
+                ->orWhere('jbt', 'like', "%$katakunci%")
+                ->orWhere('asr', 'like', "%$katakunci%")
                 ->get();
         } else {
-            $data = kry::orderBy('name', 'desc')->get();
+            $data = kry::orderBy('kry', 'asc')->get();
         }
         return view('kry.index')->with(['data' => $data, 'title' => 'Karyawan']);
     }
@@ -56,8 +59,7 @@ class kryController extends Controller
         Session::flash('jbt', $request->jbt);
         Session::flash('asr', $request->asr);
         $chtime = Carbon::now()->toDateTimeString();
-        $chuser = Auth::user()->name;
-        // $chuser = 'user1';
+        $chuser = Auth::user()->muserName;
         $request->validate([
             'kry' => 'required|unique:kry,kry',
             'nik' => 'required',
@@ -129,7 +131,10 @@ class kryController extends Controller
             'asr.required' => 'asr wajib diisi!',
         ]);
         $datakry = [
-            'name' => $request->name,
+            'nik' => $request->nik,
+            'dvs' => $request->dvs,
+            'asr' => $request->asr,
+            'jbt' => $request->jbt,
         ];
         kry::where('kry', $id)->update($datakry);
         return redirect()->to('kry')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Karyawan']);

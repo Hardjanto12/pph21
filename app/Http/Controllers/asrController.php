@@ -49,8 +49,7 @@ class asrController extends Controller
         Session::flash('asr', $request->asr);
         Session::flash('name', $request->name);
         $chtime = Carbon::now()->toDateTimeString();
-        $chuser = Auth::user()->name;
-
+        $chuser = Auth::user()->muserName;
 
         $request->validate([
             'asr' => 'required|unique:asr,asr',

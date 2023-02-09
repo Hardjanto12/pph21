@@ -12,7 +12,6 @@ class homeController extends Controller
         $title = 'Homepage';
         $userId = Auth::user()->muserName;
         $auth = Auth::check();
-        $status = 'success';
-        return view('home.index')->with(['title' => $title, 'auth' => $auth, 'status' => $status, 'userID' => $userId]);
+        return view('home.index')->with(['title' => $title, 'auth' => $auth, 'userID' => $userId]);
     }
 }

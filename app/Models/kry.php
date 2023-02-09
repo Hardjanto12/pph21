@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class kry extends Model
 {
     protected $table = 'kry';
+    public $timestamps = false;
+    protected $fillable = ['kry', 'nik', 'asr', 'dvs', 'jbt', 'chtime', 'chuser'];
 
     public function dvs()
     {

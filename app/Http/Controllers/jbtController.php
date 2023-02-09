@@ -23,7 +23,7 @@ class jbtController extends Controller
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->get();
         } else {
-            $data = jbt::orderBy('name', 'desc')->get();
+            $data = jbt::orderBy('jbt', 'asc')->get();
         }
         return view('jbt.index')->with(['data' => $data, 'title' => 'Jabatan']);
     }
@@ -49,8 +49,7 @@ class jbtController extends Controller
         Session::flash('jbt', $request->jbt);
         Session::flash('name', $request->name);
         $chtime = Carbon::now()->toDateTimeString();
-        $chuser = Auth::user()->name;
-        // $chuser = 'user1';
+        $chuser = Auth::user()->muserName;
 
         $request->validate([
             'jbt' => 'required|unique:jbt,jbt',

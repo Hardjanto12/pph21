@@ -37,8 +37,7 @@ class registerController extends Controller
             ]
         );
         $chtime = Carbon::now()->toDateTimeString();
-        // $chuser = Auth::user()->name;
-        $chuser = 'user1';
+        $chuser = Auth::user()->muserName;
         $wordlist = mUser::get();
         $muserId = count($wordlist) + 1;
         $data = [
@@ -54,5 +53,25 @@ class registerController extends Controller
 
         mUser::create($data);
         return redirect()->to('register')->with('success', 'Berhasil menambahkan user!');
+    }
+
+    public function changepassword()
+    {
+        return view('auth.partials.changepassword')->with('title', 'Ganti Password');
+    }
+
+    public function updatepassword()
+    {
+        request()->validate([
+            'muserPwd' => 'required',
+            'muserPwdconfirm' => 'required|same:muserPwd'
+        ], [
+            'muserPwd.required' => 'password wajib diisi!'
+        ]);
+        $datapwd = [
+            'muserPwd' => bcrypt(request()->muserPwd),
+        ];
+        mUser::where('muserID', Auth::id())->update($datapwd);
+        return redirect()->to('home')->with(['success' => 'Berhasil mengganti password!', 'title' => 'Home']);
     }
 }

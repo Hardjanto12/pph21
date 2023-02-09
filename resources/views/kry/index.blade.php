@@ -1,3 +1,4 @@
+@include('layouts.komponen.modal')
 @extends('layouts.template')
 <!-- START DATA -->
 @section('konten')

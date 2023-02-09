@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::resource('dvs', dvsController::class)->middleware('auth');
 Route::resource('jbt', jbtController::class)->middleware('auth');
 Route::resource('asr', asrController::class)->middleware('auth');
-Route::resource('kry', kryController::class, ['title' => 'Karyawan'])->middleware('auth');
+Route::resource('kry', kryController::class)->middleware('auth');
 
 
 Route::get('register', [registerController::class, 'index'])->name('register');
@@ -36,6 +36,8 @@ Route::post('register', [registerController::class, 'store']);
 
 Route::get('login', [loginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('login', [loginController::class, 'authenticate']);
-Route::get('logout', [loginController::class, 'logout'])->name('logout.logout');
+Route::get('logout', [loginController::class, 'logout'])->name('logout.logout')->middleware('auth');
+Route::get('changepassword', [registerController::class, 'changepassword'])->name('changepassword')->middleware('auth');
+Route::post('changepassword', [registerController::class, 'updatepassword'])->middleware('auth');
 
 Route::get('home', [homeController::class, 'index'])->name('home')->middleware('auth');

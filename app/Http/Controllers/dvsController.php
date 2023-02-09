@@ -50,8 +50,7 @@ class dvsController extends Controller
         Session::flash('dvs', $request->dvs);
         Session::flash('name', $request->name);
         $chtime = Carbon::now()->toDateTimeString();
-        $chuser = Auth::user()->name;
-        // $chuser = 'user1';
+        $chuser = Auth::user()->muserName;
         $request->validate([
             'dvs' => 'required|unique:dvs,dvs',
             'name' => 'required'
