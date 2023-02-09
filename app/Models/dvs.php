@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class dvs extends Model
 {
     use HasFactory;
-    protected $fillable = ['dvs', 'name'];
+
+    protected $fillable = ['dvs', 'name', 'chtime', 'chuser'];
     protected $table = 'dvs';
     public $timestamps = false;
+
+    public function kry()
+    {
+        return $this->hasMany(kry::class);
+    }
 }

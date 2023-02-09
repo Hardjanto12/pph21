@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class asr extends Model
 {
     use HasFactory;
-    protected $fillable = ['asr', 'name'];
+
+    protected $fillable = ['asr', 'name', 'chtime', 'chuser'];
     protected $table = 'asr';
     public $timestamps = false;
+
+    public function kry()
+    {
+        return $this->hasMany(kry::class);
+    }
 }

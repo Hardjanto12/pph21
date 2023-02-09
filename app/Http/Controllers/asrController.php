@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\asr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class asrController extends Controller
@@ -23,7 +25,7 @@ class asrController extends Controller
         } else {
             $data = asr::orderBy('name', 'desc')->get();
         }
-        return view('asr.index')->with('data', $data);
+        return view('asr.index')->with(['data' => $data, 'title' => 'Asuransi']);
     }
 
     /**
@@ -33,7 +35,7 @@ class asrController extends Controller
      */
     public function create()
     {
-        return view('asr.create');
+        return view('asr.create')->with('title', 'Asuransi');
     }
 
     /**
@@ -46,6 +48,9 @@ class asrController extends Controller
     {
         Session::flash('asr', $request->asr);
         Session::flash('name', $request->name);
+        $chtime = Carbon::now()->toDateTimeString();
+        $chuser = Auth::user()->name;
+
 
         $request->validate([
             'asr' => 'required|unique:asr,asr',
@@ -58,9 +63,11 @@ class asrController extends Controller
         $dataasr = [
             'asr' => $request->asr,
             'name' => $request->name,
+            'chtime' => $chtime,
+            'chuser' => $chuser
         ];
         asr::create($dataasr);
-        return redirect()->to('asr')->with('success', 'Berhasil menambahkan data!');
+        return redirect()->to('asr')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Divisi']);
     }
 
     /**
@@ -83,7 +90,7 @@ class asrController extends Controller
     public function edit($id)
     {
         $data = asr::where('asr', $id)->first();
-        return view('asr.edit')->with('data', $data);
+        return view('asr.edit')->with(['data' => $data, 'title' => 'Asuransi']);
     }
 
     /**
@@ -104,7 +111,7 @@ class asrController extends Controller
             'name' => $request->name,
         ];
         asr::where('asr', $id)->update($dataasr);
-        return redirect()->to('asr')->with('success', 'Berhasil melakukan update data!');
+        return redirect()->to('asr')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Asuransi']);
     }
 
     /**
@@ -116,6 +123,6 @@ class asrController extends Controller
     public function destroy($id)
     {
         asr::where('asr', $id)->delete();
-        return redirect()->to('asr')->with('success', 'Berhasil menghapus data!');
+        return redirect()->to('asr')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Asuransi']);
     }
 }

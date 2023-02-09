@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 <!-- START DATA -->
 @section('konten')
 <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -10,7 +10,6 @@
             <button class="btn btn-secondary" type="submit">Cari</button>
         </form>
     </div>
-
     <!-- TOMBOL TAMBAH DATA -->
     <div class="pb-3">
         <a href='{{ url('dvs/create') }}' class="btn btn-primary">+ Tambah Data</a>

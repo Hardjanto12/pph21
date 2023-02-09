@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 <!-- START FORM -->
 @section('konten')
 <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -17,7 +17,7 @@
                 <div class="mb-3 row">
                     <label for="name" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name='name' value="{{ $data->name }}" id="name">
+                        <input type="text" class="form-control" name='name' value="{{ trim($data->name) }}" id="name" maxlength="100">
                     </div>
                 </div>
                 <div class="mb-3 row">

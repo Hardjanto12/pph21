@@ -7,6 +7,15 @@
 </div>
 @endif
 
+{{-- pesan error login --}}
+@if (Session::has('loginError'))
+<div class="pt-3">
+    <div class="alert alert-danger">
+        {{ Session::get('loginError') }}
+    </div>
+</div>
+@endif
+
 {{-- pesan error--> --}}
 @if($errors->any())
 <div class="pt-3">

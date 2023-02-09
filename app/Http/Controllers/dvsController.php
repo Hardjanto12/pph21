@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\dvs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class dvsController extends Controller
 {
@@ -23,7 +25,7 @@ class dvsController extends Controller
         } else {
             $data = dvs::orderBy('name', 'desc')->get();
         }
-        return view('dvs.index')->with('data', $data);
+        return view('dvs.index')->with(['data' => $data, 'title' => 'Divisi']);
     }
 
     /**
@@ -33,7 +35,7 @@ class dvsController extends Controller
      */
     public function create()
     {
-        return view('dvs.create');
+        return view('dvs.create')->with('title', 'Divisi');
     }
 
     /**
@@ -44,9 +46,12 @@ class dvsController extends Controller
      */
     public function store(Request $request)
     {
+
         Session::flash('dvs', $request->dvs);
         Session::flash('name', $request->name);
-
+        $chtime = Carbon::now()->toDateTimeString();
+        $chuser = Auth::user()->name;
+        // $chuser = 'user1';
         $request->validate([
             'dvs' => 'required|unique:dvs,dvs',
             'name' => 'required'
@@ -58,9 +63,11 @@ class dvsController extends Controller
         $datadvs = [
             'dvs' => $request->dvs,
             'name' => $request->name,
+            'chtime' => $chtime,
+            'chuser' => $chuser
         ];
         dvs::create($datadvs);
-        return redirect()->to('dvs')->with('success', 'Berhasil menambahkan data!');
+        return redirect()->to('dvs')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Divisi']);
     }
 
     /**
@@ -83,7 +90,7 @@ class dvsController extends Controller
     public function edit($id)
     {
         $data = dvs::where('dvs', $id)->first();
-        return view('dvs.edit')->with('data', $data);
+        return view('dvs.edit')->with(['data' => $data, 'title' => 'Divisi']);
     }
 
     /**
@@ -104,7 +111,7 @@ class dvsController extends Controller
             'name' => $request->name,
         ];
         dvs::where('dvs', $id)->update($datadvs);
-        return redirect()->to('dvs')->with('success', 'Berhasil melakukan update data!');
+        return redirect()->to('dvs')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Divisi']);
     }
 
     /**
@@ -116,6 +123,6 @@ class dvsController extends Controller
     public function destroy($id)
     {
         dvs::where('dvs', $id)->delete();
-        return redirect()->to('dvs')->with('success', 'Berhasil menghapus data!');
+        return redirect()->to('dvs')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Divisi']);
     }
 }

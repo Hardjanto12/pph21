@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    @php
+    {{-- @php
     $string = Str::limit(Str::upper(Request::path()), 3 ,'')
-    @endphp
-    <title>{{ $string }}</title>
+    @endphp --}}
+    <title>{{ $title }}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,15 +23,15 @@
 
     <div class="container-fluid">
         <div class="row">
-            @include('layout.navbar')
+            @include('layouts.komponen.navbar')
         </div>
         <div class="row box bg-light">
-            <div class="col sidebars">
-                @include('layout.sidebars')
+            <div class="col-lg-2 sidebars">
+                @include('layouts.komponen.sidebars')
             </div>
-            <div class="col-10 bg-light">
+            <div class="col-lg-10 bg-light">
                 <main>
-                    @include('komponen.pesan')
+                    @include('layouts.komponen.pesan')
                     @yield('konten')
                 </main>
             </div>

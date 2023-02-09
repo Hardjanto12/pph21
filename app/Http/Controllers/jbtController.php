@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\jbt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class jbtController extends Controller
@@ -23,7 +25,7 @@ class jbtController extends Controller
         } else {
             $data = jbt::orderBy('name', 'desc')->get();
         }
-        return view('jbt.index')->with('data', $data);
+        return view('jbt.index')->with(['data' => $data, 'title' => 'Jabatan']);
     }
 
     /**
@@ -33,7 +35,7 @@ class jbtController extends Controller
      */
     public function create()
     {
-        return view('jbt.create');
+        return view('jbt.create')->with('title', 'Jabatan');
     }
 
     /**
@@ -46,6 +48,9 @@ class jbtController extends Controller
     {
         Session::flash('jbt', $request->jbt);
         Session::flash('name', $request->name);
+        $chtime = Carbon::now()->toDateTimeString();
+        $chuser = Auth::user()->name;
+        // $chuser = 'user1';
 
         $request->validate([
             'jbt' => 'required|unique:jbt,jbt',
@@ -58,9 +63,11 @@ class jbtController extends Controller
         $datajbt = [
             'jbt' => $request->jbt,
             'name' => $request->name,
+            'chtime' => $chtime,
+            'chuser' => $chuser
         ];
         jbt::create($datajbt);
-        return redirect()->to('jbt')->with('success', 'Berhasil menambahkan data!');
+        return redirect()->to('jbt')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Divisi']);
     }
 
     /**
@@ -83,7 +90,7 @@ class jbtController extends Controller
     public function edit($id)
     {
         $data = jbt::where('jbt', $id)->first();
-        return view('jbt.edit')->with('data', $data);
+        return view('jbt.edit')->with(['data' => $data, 'title' => 'Jabatan']);
     }
 
     /**
@@ -104,7 +111,7 @@ class jbtController extends Controller
             'name' => $request->name,
         ];
         jbt::where('jbt', $id)->update($datajbt);
-        return redirect()->to('jbt')->with('success', 'Berhasil melakukan update data!');
+        return redirect()->to('jbt')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Jabatan']);
     }
 
     /**
@@ -116,6 +123,6 @@ class jbtController extends Controller
     public function destroy($id)
     {
         jbt::where('jbt', $id)->delete();
-        return redirect()->to('jbt')->with('success', 'Berhasil menghapus data!');
+        return redirect()->to('jbt')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Jabatan']);
     }
 }

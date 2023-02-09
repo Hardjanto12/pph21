@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 <!-- START DATA -->
 @section('konten')
 <div class="my-3 p-3 bg-body rounded shadow-sm">
