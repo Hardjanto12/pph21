@@ -11,6 +11,8 @@ class asr extends Model
 
     protected $fillable = ['asr', 'name', 'chtime', 'chuser'];
     protected $table = 'asr';
+    protected $primaryKey = 'asr';
+    public $incrementing = false;
     public $timestamps = false;
 
     public function kry()

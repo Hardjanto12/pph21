@@ -6,8 +6,8 @@
     @csrf
     @method('PUT')
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <a href="{{ url('asr') }}" class="btn btn-secondary">
-            < Kembali</a>
+        <a href="{{ url('asr') }}" class="btn btn-secondary my-3">
+            Kembali</a>
                 <div class="mb-3 row">
                     <label for="asr" class="col-sm-2 col-form-label">Kode</label>
                     <div class="col-sm-10">

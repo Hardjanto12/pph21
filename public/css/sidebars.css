@@ -3,13 +3,15 @@
     min-height: -webkit-fill-available;
   } */
 
-
+body{
+    background-color: #f8f9fa;
+}
   main {
     height: 100vh;
+    min-height: 100vh;
     height: -webkit-fill-available;
-    max-height: 100vh;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
   }
 
   .dropdown-toggle { outline: 0; }
@@ -52,5 +54,6 @@
   }
 
   .scrollarea {
+    min-height: auto;
     overflow-y: auto;
   }

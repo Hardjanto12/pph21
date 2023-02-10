@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\asr;
+use App\Models\dvs;
+use App\Models\jbt;
 use App\Models\kry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 
 class kryController extends Controller
@@ -28,11 +31,15 @@ class kryController extends Controller
                 ->orWhere('dvs', 'like', "%$katakunci%")
                 ->orWhere('jbt', 'like', "%$katakunci%")
                 ->orWhere('asr', 'like', "%$katakunci%")
-                ->get();
+                ->cursorPaginate(10);
         } else {
-            $data = kry::orderBy('kry', 'asc')->get();
+            $data = kry::orderBy('kry', 'asc')->cursorPaginate(10);
         }
-        return view('kry.index')->with(['data' => $data, 'title' => 'Karyawan']);
+
+        return view('kry.index')->with([
+            'data' => $data,
+            'title' => 'Karyawan',
+        ]);
     }
 
     /**
@@ -53,8 +60,13 @@ class kryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         Session::flash('kry', $request->kry);
         Session::flash('nik', $request->nik);
+        Session::flash('name', $request->name);
+        Session::flash('alamat', $request->alamat);
+        Session::flash('kota', $request->kota);
+        Session::flash('telp', $request->name);
         Session::flash('dvs', $request->dvs);
         Session::flash('jbt', $request->jbt);
         Session::flash('asr', $request->asr);
@@ -63,27 +75,40 @@ class kryController extends Controller
         $request->validate([
             'kry' => 'required|unique:kry,kry',
             'nik' => 'required',
+            'name' => 'required',
+            'alamat' => 'required',
+            'telp' => 'required',
+            'kota' => 'required',
             'dvs' => 'required',
             'asr' => 'required',
             'jbt' => 'required'
         ], [
             'kry.required' => 'Kode wajib diisi!',
             'nik.required' => 'NIK wajib diisi!',
+            'name.required' => 'Nama wajib diisi!',
+            'alamat.required' => 'Alamat wajib diisi!',
+            'kota.required' => 'Kota wajib diisi!',
+            'telp.required' => 'No. Telepon wajib diisi!',
             'dvs.required' => 'Divisi wajib diisi!',
             'asr.required' => 'Asuransi wajib diisi!',
             'jbt.required' => 'Jabatan wajib diisi!',
             'kry.unique' => 'Kode sudah ada dalam database!',
         ]);
-        $data = [
+
+        $datakry = [
             'kry' => $request->kry,
             'nik' => $request->nik,
+            'name' => $request->name,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'telp' => $request->telp,
             'dvs' => $request->dvs,
             'asr' => $request->asr,
             'jbt' => $request->jbt,
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        kry::create($data);
+        kry::create($datakry);
         return redirect()->to('kry')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Karyawan']);
     }
 
@@ -122,19 +147,31 @@ class kryController extends Controller
         $request->validate([
             'nik' => 'required',
             'dvs' => 'required',
+            'jbt' => 'required',
             'asr' => 'required',
-            'jbt' => 'required'
+            'name' => 'required',
+            'alamat' => 'required',
+            'kota' => 'required',
+            'telp' => 'required',
         ], [
             'nik.required' => 'NIK wajib diisi!',
-            'dvs.required' => 'dvs wajib diisi!',
-            'jbt.required' => 'jbt wajib diisi!',
-            'asr.required' => 'asr wajib diisi!',
+            'dvs.required' => 'Divisi wajib diisi!',
+            'jbt.required' => 'Jabatan wajib diisi!',
+            'asr.required' => 'Asuransi wajib diisi!',
+            'name.required' => 'Nama wajib diisi!',
+            'alamat.required' => 'Alamat wajib diisi!',
+            'kota.required' => 'Kota wajib diisi!',
+            'telp.required' => 'Kota wajib diisi!',
         ]);
         $datakry = [
             'nik' => $request->nik,
             'dvs' => $request->dvs,
             'asr' => $request->asr,
             'jbt' => $request->jbt,
+            'name' => $request->name,
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'telp' => $request->telp,
         ];
         kry::where('kry', $id)->update($datakry);
         return redirect()->to('kry')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Karyawan']);

@@ -11,6 +11,8 @@ class dvs extends Model
 
     protected $fillable = ['dvs', 'name', 'chtime', 'chuser'];
     protected $table = 'dvs';
+    protected $primaryKey = 'dvs';
+    public $incrementing = false;
     public $timestamps = false;
 
     public function kry()

@@ -5,8 +5,8 @@
     <form action='{{ url('jbt/' .$data->jbt) }}' method='post'>
         @csrf
         @method('PUT')
-        <a href="{{ url('jbt') }}" class="btn btn-secondary">
-            < Kembali </a>
+        <a href="{{ url('jbt') }}" class="btn btn-secondary my-3">
+            Kembali </a>
 
                 <div class="mb-3 row">
                     <label for="jbt" class="col-sm-2 col-form-label">Kode</label>

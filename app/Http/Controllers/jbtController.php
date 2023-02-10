@@ -21,9 +21,9 @@ class jbtController extends Controller
         if (strlen($katakunci)) {
             $data = jbt::where('jbt', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
-                ->get();
+                ->cursorPaginate(10);
         } else {
-            $data = jbt::orderBy('jbt', 'asc')->get();
+            $data = jbt::orderBy('jbt', 'asc')->cursorPaginate(10);
         }
         return view('jbt.index')->with(['data' => $data, 'title' => 'Jabatan']);
     }

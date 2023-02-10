@@ -21,9 +21,9 @@ class asrController extends Controller
         if (strlen($katakunci)) {
             $data = asr::where('asr', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
-                ->get();
+                ->cursorPaginate(10);
         } else {
-            $data = asr::orderBy('name', 'desc')->get();
+            $data = asr::orderBy('name', 'asc')->cursorPaginate(10);
         }
         return view('asr.index')->with(['data' => $data, 'title' => 'Asuransi']);
     }

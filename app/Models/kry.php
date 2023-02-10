@@ -9,7 +9,19 @@ class kry extends Model
 {
     protected $table = 'kry';
     public $timestamps = false;
-    protected $fillable = ['kry', 'nik', 'asr', 'dvs', 'jbt', 'chtime', 'chuser'];
+    protected $fillable = [
+        'kry',
+        'nik',
+        'asr',
+        'dvs',
+        'jbt',
+        'name',
+        'alamat',
+        'kota',
+        'telp',
+        'chtime',
+        'chuser'
+    ];
 
     public function dvs()
     {

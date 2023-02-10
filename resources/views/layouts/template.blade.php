@@ -2,9 +2,6 @@
 <html lang="en">
 
 <head>
-    {{-- @php
-    $string = Str::limit(Str::upper(Request::path()), 3 ,'')
-    @endphp --}}
     <title>{{ $title }}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -50,6 +47,9 @@
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="{{ asset('js/sidebars.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/opentab.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/style.js') }}"></script>
 </body>
 
 </html>

@@ -11,6 +11,8 @@ class jbt extends Model
 
     protected $fillable = ['jbt', 'name', 'chtime', 'chuser'];
     protected $table = 'jbt';
+    protected $primaryKey = 'jbt';
+    public $incrementing = false;
     public $timestamps = false;
 
     public function kry()

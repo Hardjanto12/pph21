@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\dvs;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class dvsController extends Controller
 {
@@ -21,9 +21,9 @@ class dvsController extends Controller
         if (strlen($katakunci)) {
             $data = dvs::where('dvs', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
-                ->get();
+                ->cursorPaginate(10);
         } else {
-            $data = dvs::orderBy('name', 'desc')->get();
+            $data = dvs::orderBy('name', 'asc')->cursorPaginate(10);
         }
         return view('dvs.index')->with(['data' => $data, 'title' => 'Divisi']);
     }
