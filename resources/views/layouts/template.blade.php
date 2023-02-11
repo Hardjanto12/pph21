@@ -50,6 +50,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/opentab.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/style.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/detail.js') }}"></script>
 </body>
 
 </html>

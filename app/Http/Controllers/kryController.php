@@ -8,6 +8,7 @@ use App\Models\dvs;
 use App\Models\jbt;
 use App\Models\kry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
@@ -118,9 +119,11 @@ class kryController extends Controller
      * @param  \App\Models\kry  $kry
      * @return \Illuminate\Http\Response
      */
-    public function show(kry $kry)
+    public function show($id)
     {
-        //
+
+        $data = kry::where('kry', $id)->first();
+        return view('kry.detail')->with('data', $data);
     }
 
     /**
