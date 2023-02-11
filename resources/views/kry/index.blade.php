@@ -53,8 +53,8 @@
                 <td>{{ $item->jbt }}</td>
                 <td>{{ $item->asr }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#detailkry">
+                    <button type="button" class="btn btn-primary btn-sm viewdetails" data-bs-toggle="modal"
+                        data-bs-target="#detailkry" data-id='{{ $item->kry }}'>
                         Detail
                     </button>
                     <a href='{{ url('kry/'.trim($item->kry).'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
