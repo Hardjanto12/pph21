@@ -15,9 +15,18 @@ class kry extends Model
         'asr',
         'dvs',
         'jbt',
+        'cbg',
+        'ptkp',
+        'bpjs',
         'name',
+        'awal',
+        'akhir',
         'alamat',
         'kota',
+        'kel',
+        'kec',
+        'prop',
+        'gender',
         'telp',
         'chtime',
         'chuser'
@@ -34,5 +43,17 @@ class kry extends Model
     public function jbt()
     {
         return $this->belongsTo(jbt::class, 'jbt');
+    }
+    public function ptkp()
+    {
+        return $this->belongsTo(ptkp::class, 'ptkp');
+    }
+    public function bpjs()
+    {
+        return $this->belongsTo(bpjs::class, 'bpjs');
+    }
+    public function cbg()
+    {
+        return $this->belongsTo(cbg::class, 'cbg');
     }
 }

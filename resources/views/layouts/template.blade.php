@@ -26,7 +26,7 @@
             <div class="col-lg-2 sidebars">
                 @include('layouts.komponen.sidebars')
             </div>
-            <div class="col-lg-10 bg-light">
+            <div class="col-lg-10 bg-light p-2">
                 <main>
                     @include('layouts.komponen.pesan')
                     @yield('konten')

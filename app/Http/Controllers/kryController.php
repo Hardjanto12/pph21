@@ -67,10 +67,19 @@ class kryController extends Controller
         Session::flash('name', $request->name);
         Session::flash('alamat', $request->alamat);
         Session::flash('kota', $request->kota);
-        Session::flash('telp', $request->name);
+        Session::flash('telp', $request->telp);
+        Session::flash('kel', $request->kel);
+        Session::flash('kec', $request->kec);
+        Session::flash('prop', $request->prop);
+        Session::flash('gender', $request->gender);
+        Session::flash('awal', $request->awal);
+        Session::flash('akhir', $request->akhir);
         Session::flash('dvs', $request->dvs);
         Session::flash('jbt', $request->jbt);
         Session::flash('asr', $request->asr);
+        Session::flash('ptkp', $request->ptkp);
+        Session::flash('cbg', $request->cbg);
+        Session::flash('bpjs', $request->bpjs);
         $chtime = Carbon::now()->toDateTimeString();
         $chuser = Auth::user()->muserName;
         $request->validate([
@@ -80,6 +89,15 @@ class kryController extends Controller
             'alamat' => 'required',
             'telp' => 'required',
             'kota' => 'required',
+            'kel' => 'required',
+            'kec' => 'required',
+            'prop' => 'required',
+            'gender' => 'required',
+            'awal' => 'required',
+            'akhir' => 'required',
+            'ptkp' => 'required',
+            'cbg' => 'required',
+            'bpjs' => 'required',
             'dvs' => 'required',
             'asr' => 'required',
             'jbt' => 'required'
@@ -90,26 +108,44 @@ class kryController extends Controller
             'alamat.required' => 'Alamat wajib diisi!',
             'kota.required' => 'Kota wajib diisi!',
             'telp.required' => 'No. Telepon wajib diisi!',
+            'kel.required' => 'Kelurahan wajib diisi!',
+            'kec.required' => 'Kecamatan wajib diisi!',
+            'prop.required' => 'Provinsi wajib diisi!',
+            'gender.required' => 'Gender wajib diisi!',
+            'awal.required' => 'Tanggal bergabung wajib diisi!',
+            'akhir.required' => 'Tanggal berhenti wajib diisi!',
+            'ptkp.required' => 'PTKP wajib diisi!',
+            'cbg.required' => 'Cabang wajib diisi!',
+            'bpjs.required' => 'BPJS wajib diisi!',
             'dvs.required' => 'Divisi wajib diisi!',
             'asr.required' => 'Asuransi wajib diisi!',
             'jbt.required' => 'Jabatan wajib diisi!',
             'kry.unique' => 'Kode sudah ada dalam database!',
         ]);
 
-        $datakry = [
+        $data = [
             'kry' => $request->kry,
             'nik' => $request->nik,
             'name' => $request->name,
             'alamat' => $request->alamat,
             'kota' => $request->kota,
             'telp' => $request->telp,
+            'kel' => $request->kel,
+            'kec' => $request->kec,
+            'prop' => $request->prop,
+            'gender' => $request->gender,
+            'awal' => $request->awal,
+            'akhir' => $request->akhir,
+            'ptkp' => $request->ptkp,
+            'bpjs' => $request->bpjs,
+            'cbg' => $request->cbg,
             'dvs' => $request->dvs,
             'asr' => $request->asr,
             'jbt' => $request->jbt,
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        kry::create($datakry);
+        kry::create($data);
         return redirect()->to('kry')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Karyawan']);
     }
 
@@ -156,6 +192,15 @@ class kryController extends Controller
             'alamat' => 'required',
             'kota' => 'required',
             'telp' => 'required',
+            'kel' => 'required',
+            'kec' => 'required',
+            'prop' => 'required',
+            'gender' => 'required',
+            'awal' => 'required',
+            'akhir' => 'required',
+            'ptkp' => 'required',
+            'cbg' => 'required',
+            'bpjs' => 'required',
         ], [
             'nik.required' => 'NIK wajib diisi!',
             'dvs.required' => 'Divisi wajib diisi!',
@@ -165,8 +210,17 @@ class kryController extends Controller
             'alamat.required' => 'Alamat wajib diisi!',
             'kota.required' => 'Kota wajib diisi!',
             'telp.required' => 'Kota wajib diisi!',
+            'kel.required' => 'Kelurahan wajib diisi!',
+            'kec.required' => 'Kecamatan wajib diisi!',
+            'prop.required' => 'Provinsi wajib diisi!',
+            'gender.required' => 'Gender wajib diisi!',
+            'awal.required' => 'Tanggal bergabung wajib diisi!',
+            'akhir.required' => 'Tanggal berhenti wajib diisi!',
+            'ptkp.required' => 'PTKP wajib diisi!',
+            'cbg.required' => 'Cabang wajib diisi!',
+            'bpjs.required' => 'BPJS wajib diisi!',
         ]);
-        $datakry = [
+        $data = [
             'nik' => $request->nik,
             'dvs' => $request->dvs,
             'asr' => $request->asr,
@@ -175,8 +229,19 @@ class kryController extends Controller
             'alamat' => $request->alamat,
             'kota' => $request->kota,
             'telp' => $request->telp,
+            'kel' => $request->kel,
+            'kec' => $request->kec,
+            'prop' => $request->prop,
+            'gender' => $request->gender,
+            'awal' => $request->awal,
+            'akhir' => $request->akhir,
+            'ptkp' => $request->ptkp,
+            'bpjs' => $request->bpjs,
+            'cbg' => $request->cbg,
+            'chtime' => Carbon::now()->toDateTimeString(),
+            'chuser' => Auth::user()->muserName,
         ];
-        kry::where('kry', $id)->update($datakry);
+        kry::where('kry', $id)->update($data);
         return redirect()->to('kry')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Karyawan']);
     }
 

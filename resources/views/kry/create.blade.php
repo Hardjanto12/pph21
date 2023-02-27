@@ -4,8 +4,8 @@
 
 <form action='{{ url('kry') }}' method='post' class="needs-validation" novalidate>
     @csrf
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <a href="{{ url('kry') }}" class="btn btn-secondary my-3">Kembali</a>
+    <div class="mb-2 p-3 bg-body rounded shadow-sm">
+        <a href="{{ url('kry') }}" class="btn btn-secondary mb-2">Kembali</a>
         <div class="mb-3 row">
             <label for="kry" class="col-sm-2 col-form-label form-label">Kode</label>
             <div class="col-sm-10">
@@ -65,6 +65,41 @@
                 </div>
             </div>
         </div>
+        <div class="mb-3 row">
+            <label for="kel" class="col-sm-2 col-form-label">Kelurahan</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Kel" aria-label="Kel" aria-describedby="kel"
+                    name="kel" value="{{ Session::get('kel') }}" id="kel" @error('kel') is-invalid @enderror
+                    required>
+                <div class="invalid-feedback">
+                    Kelurahan tidak boleh kosong.
+                </div>
+            </div>
+        </div>
+    
+        <div class="mb-3 row">
+            <label for="kec" class="col-sm-2 col-form-label">Kecamatan</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Kec" aria-label="Kec" aria-describedby="kec"
+                    name="kec" value="{{ Session::get('kec') }}" id="kec" @error('kec') is-invalid @enderror
+                    required>
+                <div class="invalid-feedback">
+                    Kecamatan tidak boleh kosong.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="prop" class="col-sm-2 col-form-label">Provinsi</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Provinsi" aria-label="Provinsi" aria-describedby="prop"
+                    name="prop" value="{{ Session::get('prop') }}" id="prop" @error('prop') is-invalid @enderror
+                    required>
+                <div class="invalid-feedback">
+                    Provinsi tidak boleh kosong.
+                </div>
+            </div>
+        </div>
 
         <div class="mb-3 row">
             <label for="telp" class="col-sm-2 col-form-label">Telepon</label>
@@ -75,6 +110,30 @@
                 <div class="invalid-feedback">
                     Telepon tidak boleh kosong.
                 </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="gender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+            <div class="col-sm-10">
+                <select class="form-select" name="gender" id="gender" value="{{ Session::get('gender') }}">
+                    <option selected>Pilih</option>
+                    <option value="M">Laki-laki</option>
+                    <option value="F">Perempuan</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="awal" class="col-sm-2 col-form-label">Tanggal Awal</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name='awal' value="{{ Session::get('awal') }}" id="awal">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="akhir" class="col-sm-2 col-form-label">Tanggal Akhir</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name='akhir' value="{{ Session::get('akhir') }}" id="akhir">
             </div>
         </div>
 
@@ -117,6 +176,51 @@
                 </div>
                 <div class="invalid-feedback">
                     Asuransi tidak boleh kosong.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="ptkp" class="col-sm-2 col-form-label">PTKP</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="PTKP" aria-label="PTKP"
+                        aria-describedby="ptkp" name="ptkp" value="{{ Session::get('ptkp') }}" id="inputptkp" @error('ptkp')
+                        is-invalid @enderror required>
+                    <button class="btn btn-outline-primary" onclick="ptkpFunction()" type="button" id="btnptkp">Pilih</button>
+                </div>
+                <div class="invalid-feedback">
+                    PTKP tidak boleh kosong.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="cbg" class="col-sm-2 col-form-label">Cabang</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cabang" aria-label="Cabang"
+                        aria-describedby="cbg" name="cbg" value="{{ Session::get('cbg') }}" id="inputcbg" @error('cbg')
+                        is-invalid @enderror required>
+                    <button class="btn btn-outline-primary" onclick="cbgFunction()" type="button" id="btncbg">Pilih</button>
+                </div>
+                <div class="invalid-feedback">
+                    Cabang tidak boleh kosong.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="bpjs" class="col-sm-2 col-form-label">BPJS</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="BPJS" aria-label="BPJS"
+                        aria-describedby="bpjs" name="bpjs" value="{{ Session::get('bpjs') }}" id="inputbpjs" @error('bpjs')
+                        is-invalid @enderror required>
+                    <button class="btn btn-outline-primary" onclick="bpjsFunction()" type="button" id="btnbpjs">Pilih</button>
+                </div>
+                <div class="invalid-feedback">
+                    BPJS tidak boleh kosong.
                 </div>
             </div>
         </div>

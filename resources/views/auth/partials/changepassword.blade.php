@@ -5,7 +5,7 @@
     @include('layouts.komponen.pesan')
     <form action="changepassword" method="post">
         @csrf
-        <h1 class="h3 my-3 fw-normal text-center">Ganti password anda</h1>
+        <h1 class="h3 mb-2 fw-normal text-center">Ganti password anda</h1>
 
         <div class="form-floating">
             <input type="password" name="muserPwd" class="form-control @error('muserPwd') is-invalid

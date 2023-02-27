@@ -70,6 +70,8 @@ class registerController extends Controller
         ]);
         $datapwd = [
             'muserPwd' => bcrypt(request()->muserPwd),
+            'muserModiDate' => Carbon::now()->toDateTimeString(),
+            'muserModiUser' => Auth::user()->muserName,
         ];
         mUser::where('muserID', Auth::id())->update($datapwd);
         return redirect()->to('home')->with(['success' => 'Berhasil mengganti password!', 'title' => 'Home']);

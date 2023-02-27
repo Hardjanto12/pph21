@@ -23,7 +23,7 @@ class asrController extends Controller
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = asr::orderBy('name', 'asc')->cursorPaginate(10);
+            $data = asr::orderBy('asr', 'asc')->cursorPaginate(10);
         }
         return view('asr.index')->with(['data' => $data, 'title' => 'Asuransi']);
     }
@@ -108,6 +108,8 @@ class asrController extends Controller
         ]);
         $dataasr = [
             'name' => $request->name,
+            'chtime' => Carbon::now()->toDateTimeString(),
+            'chuser' => Auth::user()->muserName,
         ];
         asr::where('asr', $id)->update($dataasr);
         return redirect()->to('asr')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Asuransi']);

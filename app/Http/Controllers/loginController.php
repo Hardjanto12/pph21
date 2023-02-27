@@ -29,29 +29,29 @@ class loginController extends Controller
 
     public function authenticate(Request $request)
     {
-        try {
-            $validated = $request->validate([
-                'muserName' => 'required',
-                'muserPwd' => 'required'
-            ]);
+        // try {
+        $validated = $request->validate([
+            'muserName' => 'required',
+            'muserPwd' => 'required'
+        ]);
 
-            print_r($validated);
-            $isAuth = Auth::attempt(
-                [
-                    'muserName' => $validated['muserName'],
-                    'password' => $validated['muserPwd']
-                ]
-            );
+        // print_r($validated);
+        $isAuth = Auth::attempt(
+            [
+                'muserName' => $validated['muserName'],
+                'password' => $validated['muserPwd']
+            ]
+        );
 
-            if ($isAuth) {
-                return redirect('home');
-            } else {
-                return back()->withErrors([
-                    'muserName' => 'Username salah!',
-                ])->onlyInput('muserName');
-            }
-        } catch (\Throwable $th) {
-            dd($th->getMessage());
+        if ($isAuth) {
+            return redirect('home');
+        } else {
+            return back()->withErrors([
+                'muserName' => 'Username atau password salah!',
+            ])->onlyInput('muserName');
         }
+        // } catch (\Throwable $th) {
+        //     return back()->withErrors([])->onlyInput('muserName');
+        // }
     }
 }

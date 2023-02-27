@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Select Asuransi</title>
+  <title>Pilih Asuransi</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +15,7 @@
 
 <body>
   <main>
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
+    <div class="mb-2 p-3 bg-body rounded shadow-sm">
         <div class="container">
             <div class="row">
                 <div class="col-8"></div>

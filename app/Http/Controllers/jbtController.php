@@ -66,7 +66,7 @@ class jbtController extends Controller
             'chuser' => $chuser
         ];
         jbt::create($datajbt);
-        return redirect()->to('jbt')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Divisi']);
+        return redirect()->to('jbt')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Jabatan']);
     }
 
     /**
@@ -108,6 +108,8 @@ class jbtController extends Controller
         ]);
         $datajbt = [
             'name' => $request->name,
+            'chtime' => Carbon::now()->toDateTimeString(),
+            'chuser' => Auth::user()->muserName,
         ];
         jbt::where('jbt', $id)->update($datajbt);
         return redirect()->to('jbt')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Jabatan']);

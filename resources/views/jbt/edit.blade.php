@@ -1,11 +1,11 @@
 @extends('layouts.template')
 <!-- START FORM -->
 @section('konten')
-<div class="my-3 p-3 bg-body rounded shadow-sm">
+<div class="mb-2 p-3 bg-body rounded shadow-sm">
     <form action='{{ url('jbt/' .$data->jbt) }}' method='post'>
         @csrf
         @method('PUT')
-        <a href="{{ url('jbt') }}" class="btn btn-secondary my-3">
+        <a href="{{ url('jbt') }}" class="btn btn-secondary mb-2">
             Kembali </a>
 
                 <div class="mb-3 row">

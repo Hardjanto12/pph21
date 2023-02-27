@@ -47,7 +47,7 @@
                 <td>{{ $item->asr }}</td>
                 <td>{{ $item->name }}</td>
                 <td>
-                    <a href='{{ url(' asr/'.trim($item->asr).'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
+                    <a href='{{ url('asr/'.trim($item->asr).'/edit') }}' class="btn btn-warning btn-sm">Edit</a>
                     <form onsubmit="return confirm('Yakin akan menghapus data?')" class="d-inline"
                         action="{{ url('asr/'.$item->asr) }}" method="post">
                         @csrf

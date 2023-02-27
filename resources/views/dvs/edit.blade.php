@@ -5,8 +5,8 @@
 <form action='{{ url('dvs/' .$data->dvs) }}' method='post'>
     @csrf
     @method('PUT')
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <a href="{{ url('dvs') }}" class="btn btn-secondary my-3">
+    <div class="mb-2 p-3 bg-body rounded shadow-sm">
+        <a href="{{ url('dvs') }}" class="btn btn-secondary mb-2">
             Kembali</a>
                 <div class="mb-3 row">
                     <label for="dvs" class="col-sm-2 col-form-label">Kode</label>

@@ -23,7 +23,7 @@ class dvsController extends Controller
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = dvs::orderBy('name', 'asc')->cursorPaginate(10);
+            $data = dvs::orderBy('dvs', 'asc')->cursorPaginate(10);
         }
         return view('dvs.index')->with(['data' => $data, 'title' => 'Divisi']);
     }
@@ -108,6 +108,8 @@ class dvsController extends Controller
         ]);
         $datadvs = [
             'name' => $request->name,
+            'chtime' => Carbon::now()->toDateTimeString(),
+            'chuser' => Auth::user()->muserName,
         ];
         dvs::where('dvs', $id)->update($datadvs);
         return redirect()->to('dvs')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Divisi']);

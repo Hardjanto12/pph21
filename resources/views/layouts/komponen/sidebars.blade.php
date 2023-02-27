@@ -21,6 +21,21 @@
                         <li><a href="{{ url('kry') }}"
                                 class="link-dark d-inline-flex text-decoration-none rounded">Karyawan</a>
                         </li>
+                        <li><a href="{{ url('ktg') }}"
+                                class="link-dark d-inline-flex text-decoration-none rounded">Kategori Penghasilan</a>
+                        </li>
+                        <li><a href="{{ url('mgj') }}"
+                                class="link-dark d-inline-flex text-decoration-none rounded">Penghasilan</a>
+                        </li>
+                        <li><a href="{{ url('ptkp') }}"
+                                class="link-dark d-inline-flex text-decoration-none rounded">PTKP</a>
+                        </li>
+                        <li><a href="{{ url('cbg') }}"
+                                class="link-dark d-inline-flex text-decoration-none rounded">Cabang</a>
+                        </li>
+                        <li><a href="{{ url('bpjs') }}"
+                                class="link-dark d-inline-flex text-decoration-none rounded">BPJS</a>
+                        </li>
                     </ul>
                 </div>
             </li>
