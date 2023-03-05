@@ -89,3 +89,40 @@ function bpjsFunction() {
 function popupCallbackbpjs(bpjsdata) {
     document.getElementById("inputbpjs").setAttribute('value',bpjsdata);
 }
+
+// kry
+function kryFunction() {
+    popname = window.open(
+        "/kry/selectkry",
+        "Pilih Kategori Karyawan",
+        "status=1, height=600, width=600, toolbar=0,resizable=1"
+    );
+    popname.window.focus();
+}
+function popupCallbackkry(krydata) {
+    let kry = krydata[0];
+    let nik = krydata[1];
+    let name = krydata[2];
+    document.getElementById("inputkry").setAttribute('value',kry);
+    document.getElementById("inputnikkry").setAttribute('value',nik);
+    document.getElementById("inputnamekry").setAttribute('value',name);
+}
+
+// mgj
+function mgjFunction() {
+    popname = window.open(
+        "/mgj/selectmgj",
+        "Pilih Penghasilan",
+        "status=1, height=600, width=600, toolbar=0,resizable=1"
+    );
+    popname.window.focus();
+}
+function popupCallbackmgj(mgjdata) {
+    // alert(mgjdata)
+    let mgj = mgjdata[0];
+    let name = mgjdata[1];
+    let ktg = mgjdata[2];
+    document.getElementById("inputmgj").setAttribute('value',mgj);
+    document.getElementById("inputmgjname").setAttribute('value',name);
+    document.getElementById("inputmgjktg").setAttribute('value',ktg);
+}

@@ -37,6 +37,7 @@
                 <th>Kode</th>
                 <th>NIK</th>
                 <th>Divisi</th>
+                {{-- <th>Nama Divisi</th> --}}
                 <th>Jabatan</th>
                 <th>Asuransi</th>
                 <th>Aksi</th>
@@ -50,6 +51,7 @@
                 <td>{{ $item->kry }}</td>
                 <td>{{ $item->nik }}</td>
                 <td>{{ $item->dvs }}</td>
+                {{-- <td>{{ $item->dvs->name }}</td> --}}
                 <td>{{ $item->jbt }}</td>
                 <td>{{ $item->asr }}</td>
                 <td>

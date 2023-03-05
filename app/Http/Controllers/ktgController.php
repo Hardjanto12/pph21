@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\ktg;
+use App\Models\Ktg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -19,11 +19,11 @@ class ktgController extends Controller
     {
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = ktg::where('ktg', 'like', "%$katakunci%")
+            $data = Ktg::where('ktg', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = ktg::orderBy('ktg', 'asc')->cursorPaginate(10);
+            $data = Ktg::orderBy('ktg', 'asc')->cursorPaginate(10);
         }
         return view('ktg.index')->with(['data' => $data, 'title' => 'Kategori Penghasilan']);
     }
@@ -65,7 +65,7 @@ class ktgController extends Controller
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        ktg::create($dataktg);
+        Ktg::create($dataktg);
         return redirect()->to('ktg')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Kategori Penghasilan']);
     }
 
@@ -88,7 +88,7 @@ class ktgController extends Controller
      */
     public function edit($id)
     {
-        $data = ktg::where('ktg', $id)->first();
+        $data = Ktg::where('ktg', $id)->first();
         return view('ktg.edit')->with(['data' => $data, 'title' => 'Kategori Penghasilan']);
     }
 
@@ -111,7 +111,7 @@ class ktgController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        ktg::where('ktg', $id)->update($dataktg);
+        Ktg::where('ktg', $id)->update($dataktg);
         return redirect()->to('ktg')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Kategori Penghasilan']);
     }
 
@@ -123,7 +123,7 @@ class ktgController extends Controller
      */
     public function destroy($id)
     {
-        ktg::where('ktg', $id)->delete();
+        Ktg::where('ktg', $id)->delete();
         return redirect()->to('ktg')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Kategori Penghasilan']);
     }
 }

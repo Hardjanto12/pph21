@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cbg extends Model
+class Cbg extends Model
 {
     protected $fillable = [
         'cbg',
@@ -26,6 +26,6 @@ class cbg extends Model
 
     public function kry()
     {
-        return $this->hasMany(kry::class);
+        return $this->hasMany(kry::class, 'kry', 'kry');
     }
 }

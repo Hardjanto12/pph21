@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\dvs;
+use App\Models\Dvs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -19,11 +19,11 @@ class dvsController extends Controller
     {
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = dvs::where('dvs', 'like', "%$katakunci%")
+            $data = Dvs::where('dvs', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = dvs::orderBy('dvs', 'asc')->cursorPaginate(10);
+            $data = Dvs::orderBy('dvs', 'asc')->cursorPaginate(10);
         }
         return view('dvs.index')->with(['data' => $data, 'title' => 'Divisi']);
     }
@@ -65,7 +65,7 @@ class dvsController extends Controller
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        dvs::create($datadvs);
+        Dvs::create($datadvs);
         return redirect()->to('dvs')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Divisi']);
     }
 
@@ -88,7 +88,7 @@ class dvsController extends Controller
      */
     public function edit($id)
     {
-        $data = dvs::where('dvs', $id)->first();
+        $data = Dvs::where('dvs', $id)->first();
         return view('dvs.edit')->with(['data' => $data, 'title' => 'Divisi']);
     }
 
@@ -111,7 +111,7 @@ class dvsController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        dvs::where('dvs', $id)->update($datadvs);
+        Dvs::where('dvs', $id)->update($datadvs);
         return redirect()->to('dvs')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Divisi']);
     }
 
@@ -123,7 +123,7 @@ class dvsController extends Controller
      */
     public function destroy($id)
     {
-        dvs::where('dvs', $id)->delete();
+        Dvs::where('dvs', $id)->delete();
         return redirect()->to('dvs')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Divisi']);
     }
 }

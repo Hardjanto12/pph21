@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\asr;
+use App\Models\Asr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -19,11 +19,11 @@ class asrController extends Controller
     {
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = asr::where('asr', 'like', "%$katakunci%")
+            $data = Asr::where('asr', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = asr::orderBy('asr', 'asc')->cursorPaginate(10);
+            $data = Asr::orderBy('asr', 'asc')->cursorPaginate(10);
         }
         return view('asr.index')->with(['data' => $data, 'title' => 'Asuransi']);
     }
@@ -65,7 +65,7 @@ class asrController extends Controller
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        asr::create($dataasr);
+        Asr::create($dataasr);
         return redirect()->to('asr')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Divisi']);
     }
 
@@ -88,7 +88,7 @@ class asrController extends Controller
      */
     public function edit($id)
     {
-        $data = asr::where('asr', $id)->first();
+        $data = Asr::where('asr', $id)->first();
         return view('asr.edit')->with(['data' => $data, 'title' => 'Asuransi']);
     }
 
@@ -111,7 +111,7 @@ class asrController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        asr::where('asr', $id)->update($dataasr);
+        Asr::where('asr', $id)->update($dataasr);
         return redirect()->to('asr')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Asuransi']);
     }
 
@@ -123,7 +123,7 @@ class asrController extends Controller
      */
     public function destroy($id)
     {
-        asr::where('asr', $id)->delete();
+        Asr::where('asr', $id)->delete();
         return redirect()->to('asr')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Asuransi']);
     }
 }

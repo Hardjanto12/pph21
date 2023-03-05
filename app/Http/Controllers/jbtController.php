@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\jbt;
+use App\Models\Jbt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -19,11 +19,11 @@ class jbtController extends Controller
     {
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = jbt::where('jbt', 'like', "%$katakunci%")
+            $data = Jbt::where('jbt', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = jbt::orderBy('jbt', 'asc')->cursorPaginate(10);
+            $data = Jbt::orderBy('jbt', 'asc')->cursorPaginate(10);
         }
         return view('jbt.index')->with(['data' => $data, 'title' => 'Jabatan']);
     }
@@ -65,7 +65,7 @@ class jbtController extends Controller
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        jbt::create($datajbt);
+        Jbt::create($datajbt);
         return redirect()->to('jbt')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Jabatan']);
     }
 
@@ -88,7 +88,7 @@ class jbtController extends Controller
      */
     public function edit($id)
     {
-        $data = jbt::where('jbt', $id)->first();
+        $data = Jbt::where('jbt', $id)->first();
         return view('jbt.edit')->with(['data' => $data, 'title' => 'Jabatan']);
     }
 
@@ -111,7 +111,7 @@ class jbtController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        jbt::where('jbt', $id)->update($datajbt);
+        Jbt::where('jbt', $id)->update($datajbt);
         return redirect()->to('jbt')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Jabatan']);
     }
 
@@ -123,7 +123,7 @@ class jbtController extends Controller
      */
     public function destroy($id)
     {
-        jbt::where('jbt', $id)->delete();
+        Jbt::where('jbt', $id)->delete();
         return redirect()->to('jbt')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Jabatan']);
     }
 }

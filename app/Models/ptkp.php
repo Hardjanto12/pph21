@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ptkp extends Model
+class Ptkp extends Model
 {
     protected $fillable = [
         'ptkp',
@@ -24,6 +24,6 @@ class ptkp extends Model
 
     public function kry()
     {
-        return $this->hasMany(kry::class);
+        return $this->hasMany(kry::class, 'kry', 'kry');
     }
 }

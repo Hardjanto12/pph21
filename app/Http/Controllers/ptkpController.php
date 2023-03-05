@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ptkp;
+use App\Models\Ptkp;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +19,11 @@ class ptkpController extends Controller
     {
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = ptkp::where('ptkp', 'like', "%$katakunci%")
+            $data = Ptkp::where('ptkp', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = ptkp::orderBy('ptkp', 'asc')->cursorPaginate(10);
+            $data = Ptkp::orderBy('ptkp', 'asc')->cursorPaginate(10);
         }
         return view('ptkp.index')->with(['data' => $data, 'title' => 'PTKP']);
     }
@@ -85,7 +85,7 @@ class ptkpController extends Controller
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        ptkp::create($data);
+        Ptkp::create($data);
         return redirect()->to('ptkp')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Jabatan']);
     }
     /**
@@ -107,7 +107,7 @@ class ptkpController extends Controller
      */
     public function edit($id)
     {
-        $data = ptkp::where('ptkp', $id)->first();
+        $data = Ptkp::where('ptkp', $id)->first();
         return view('ptkp.edit')->with(['data' => $data, 'title' => 'PTKP']);
     }
 
@@ -145,7 +145,7 @@ class ptkpController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        ptkp::where('ptkp', $id)->update($data);
+        Ptkp::where('ptkp', $id)->update($data);
         return redirect()->to('ptkp')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'PTKP']);
     }
 
@@ -157,7 +157,7 @@ class ptkpController extends Controller
      */
     public function destroy($id)
     {
-        ptkp::where('ptkp', $id)->delete();
+        Ptkp::where('ptkp', $id)->delete();
         return redirect()->to('ptkp')->with(['success' => 'Berhasil menghapus data!', 'title' => 'PTKP']);
     }
 }

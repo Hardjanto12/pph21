@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bpjs;
+use App\Models\Bpjs;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +19,11 @@ class bpjsController extends Controller
     {
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = bpjs::where('bpjs', 'like', "%$katakunci%")
+            $data = Bpjs::where('bpjs', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = bpjs::orderBy('bpjs', 'asc')->cursorPaginate(10);
+            $data = Bpjs::orderBy('bpjs', 'asc')->cursorPaginate(10);
         }
         return view('bpjs.index')->with(['data' => $data, 'title' => 'BPJS']);
     }
@@ -84,7 +84,7 @@ class bpjsController extends Controller
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        bpjs::create($data);
+        Bpjs::create($data);
         return redirect()->to('bpjs')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'BPJS']);
     }
 
@@ -96,8 +96,8 @@ class bpjsController extends Controller
      */
     public function show($id)
     {
-        $kolom = collect(bpjs::first())->keys();
-        $data = bpjs::where('bpjs', $id)->first();
+        $kolom = collect(Bpjs::first())->keys();
+        $data = Bpjs::where('bpjs', $id)->first();
         // $d = $data->toArray();
         return view('bpjs.detail')->with('data', $data);
     }
@@ -110,7 +110,7 @@ class bpjsController extends Controller
      */
     public function edit($id)
     {
-        $data = bpjs::where('bpjs', $id)->first();
+        $data = Bpjs::where('bpjs', $id)->first();
         return view('bpjs.edit')->with(['data' => $data, 'title' => 'BPJS']);
     }
 
@@ -148,7 +148,7 @@ class bpjsController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        bpjs::where('bpjs', $id)->update($data);
+        Bpjs::where('bpjs', $id)->update($data);
         return redirect()->to('bpjs')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'BPJS']);
     }
 
@@ -160,7 +160,7 @@ class bpjsController extends Controller
      */
     public function destroy($id)
     {
-        bpjs::where('bpjs', $id)->delete();
+        Bpjs::where('bpjs', $id)->delete();
         return redirect()->to('bpjs')->with(['success' => 'Berhasil menghapus data!', 'title' => 'BPJS']);
     }
 }

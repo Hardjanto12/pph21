@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\asr;
-use App\Models\cbg;
-use App\Models\dvs;
-use App\Models\jbt;
-use App\Models\ktg;
-use App\Models\bpjs;
-use App\Models\ptkp;
+use App\Models\Asr;
+use App\Models\Cbg;
+use App\Models\Dvs;
+use App\Models\Jbt;
+use App\Models\Ktg;
+use App\Models\Bpjs;
+use App\Models\Ptkp;
+use App\Models\Kry;
+use App\Models\Mgj;
 use Illuminate\Http\Request;
 
 class selectController extends Controller
@@ -17,24 +19,24 @@ class selectController extends Controller
     {
         $katakunci = request()->katakunci;
         if (strlen($katakunci)) {
-            $data = dvs::where('dvs', 'like', "%$katakunci%")
+            $data = Dvs::where('dvs', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = dvs::orderBy('dvs', 'asc')->cursorPaginate(10);
+            $data = Dvs::orderBy('dvs', 'asc')->cursorPaginate(10);
         }
-        return view('dvs.select')->with(['data' => $data, 'title' => 'Pilih Divisi']);
+        return view('Dvs.select')->with(['data' => $data, 'title' => 'Pilih Divisi']);
     }
 
     public function selectjbt()
     {
         $katakunci = request()->katakunci;
         if (strlen($katakunci)) {
-            $data = jbt::where('jbt', 'like', "%$katakunci%")
+            $data = Jbt::where('jbt', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = jbt::orderBy('jbt', 'asc')->cursorPaginate(10);
+            $data = Jbt::orderBy('jbt', 'asc')->cursorPaginate(10);
         }
         return view('jbt.select')->with(['data' => $data, 'title' => 'Pilih Jabatan']);
     }
@@ -43,11 +45,11 @@ class selectController extends Controller
     {
         $katakunci = request()->katakunci;
         if (strlen($katakunci)) {
-            $data = asr::where('asr', 'like', "%$katakunci%")
+            $data = Asr::where('asr', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = asr::orderBy('asr', 'asc')->cursorPaginate(10);
+            $data = Asr::orderBy('asr', 'asc')->cursorPaginate(10);
         }
         return view('asr.select')->with(['data' => $data, 'title' => 'Pilih Asuransi']);
     }
@@ -69,11 +71,11 @@ class selectController extends Controller
     {
         $katakunci = request()->katakunci;
         if (strlen($katakunci)) {
-            $data = ptkp::where('ptkp', 'like', "%$katakunci%")
+            $data = Ptkp::where('ptkp', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = ptkp::orderBy('ptkp', 'asc')->cursorPaginate(10);
+            $data = Ptkp::orderBy('ptkp', 'asc')->cursorPaginate(10);
         }
         return view('ptkp.select')->with(['data' => $data, 'title' => 'Pilih PTKP']);
     }
@@ -94,12 +96,37 @@ class selectController extends Controller
     {
         $katakunci = request()->katakunci;
         if (strlen($katakunci)) {
-            $data = bpjs::where('bpjs', 'like', "%$katakunci%")
+            $data = Bpjs::where('bpjs', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = bpjs::orderBy('bpjs', 'asc')->cursorPaginate(10);
+            $data = Bpjs::orderBy('bpjs', 'asc')->cursorPaginate(10);
         }
         return view('bpjs.select')->with(['data' => $data, 'title' => 'Pilih BPJS']);
+    }
+    public function selectkry()
+    {
+        $katakunci = request()->katakunci;
+        if (strlen($katakunci)) {
+            $data = Kry::where('kry', 'like', "%$katakunci%")
+                ->orWhere('name', 'like', "%$katakunci%")
+                ->cursorPaginate(10);
+        } else {
+            $data = Kry::orderBy('kry', 'asc')->cursorPaginate(10);
+        }
+        return view('kry.select')->with(['data' => $data, 'title' => 'Pilih Karyawan']);
+    }
+
+    public function selectmgj()
+    {
+        $katakunci = request()->katakunci;
+        if (strlen($katakunci)) {
+            $data = Mgj::where('mgj', 'like', "%$katakunci%")
+                ->orWhere('name', 'like', "%$katakunci%")
+                ->cursorPaginate(10);
+        } else {
+            $data = Mgj::orderBy('mgj', 'asc')->cursorPaginate(10);
+        }
+        return view('mgj.select')->with(['data' => $data, 'title' => 'Pilih Penghasilan']);
     }
 }

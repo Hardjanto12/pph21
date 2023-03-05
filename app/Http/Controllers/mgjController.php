@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\mgj;
+use App\Models\Mgj;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -21,12 +21,12 @@ class mgjController extends Controller
 
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = mgj::where('mgj', 'like', "%$katakunci%")
+            $data = Mgj::where('mgj', 'like', "%$katakunci%")
                 ->orWhere('name', 'like', "%$katakunci%")
                 ->orWhere('ktg', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = mgj::orderBy('mgj', 'asc')->cursorPaginate(10);
+            $data = Mgj::orderBy('mgj', 'asc')->cursorPaginate(10);
         }
 
         return view('mgj.index')->with([
@@ -76,7 +76,7 @@ class mgjController extends Controller
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        mgj::create($data);
+        Mgj::create($data);
         return redirect()->to('mgj')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Penghasilan']);
     }
 
@@ -88,7 +88,7 @@ class mgjController extends Controller
      */
     public function show($id)
     {
-        $data = mgj::where('mgj', $id)->first();
+        $data = Mgj::where('mgj', $id)->first();
         return view('mgj.detail')->with('data', $data);
     }
 
@@ -100,7 +100,7 @@ class mgjController extends Controller
      */
     public function edit($id)
     {
-        $data = mgj::where('mgj', $id)->first();
+        $data = Mgj::where('mgj', $id)->first();
         return view('mgj.edit')->with(['data' => $data, 'title' => 'Penghasilan']);
     }
 
@@ -126,7 +126,7 @@ class mgjController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        mgj::where('mgj', $id)->update($datamgj);
+        Mgj::where('mgj', $id)->update($datamgj);
         return redirect()->to('mgj')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Penghasilan']);
     }
 
@@ -138,7 +138,7 @@ class mgjController extends Controller
      */
     public function destroy($id)
     {
-        mgj::where('mgj', $id)->delete();
+        Mgj::where('mgj', $id)->delete();
         return redirect()->to('mgj')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Penghasilan']);
     }
 }

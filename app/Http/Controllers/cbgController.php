@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cbg;
+use App\Models\Cbg;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

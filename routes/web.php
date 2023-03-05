@@ -11,10 +11,15 @@ use App\Http\Controllers\jbtController;
 use App\Http\Controllers\cbgController;
 use App\Http\Controllers\mgjController;
 use App\Http\Controllers\ptkpController;
+use App\Http\Controllers\krdController;
 use App\Http\Controllers\kryController;
+use App\Http\Controllers\tgjController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\tgdController;
+
+use App\Http\Controllers\createController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +32,9 @@ use App\Http\Controllers\registerController;
 |
 */
 
+Route::get('/createdata/ktg', [createController::class, 'createKtg'])->middleware('auth');
+Route::get('/createdata/mgj', [createController::class, 'createMgj'])->middleware('auth');
+
 
 /* A route to selectdvs, selectasr, selectjbt, and selectktg. */
 
@@ -36,7 +44,18 @@ Route::get('/jbt/selectjbt', [selectController::class, 'selectjbt'])->middleware
 Route::get('/ktg/selectktg', [selectController::class, 'selectktg'])->middleware('auth');
 Route::get('/ptkp/selectptkp', [selectController::class, 'selectptkp'])->middleware('auth');
 Route::get('/cbg/selectcbg', [selectController::class, 'selectcbg'])->middleware('auth');
+Route::get('/kry/selectkry', [selectController::class, 'selectkry'])->middleware('auth');
 Route::get('/bpjs/selectbpjs', [selectController::class, 'selectbpjs'])->middleware('auth');
+Route::get('/mgj/selectmgj', [selectController::class, 'selectmgj'])->middleware('auth');
+
+
+Route::delete('/krdedit/delete/{kry}/{mgj}', [krdController::class, 'destroyedit'])->middleware('auth');
+Route::delete('/krdcreate/delete/{kry}/{mgj}', [krdController::class, 'destroycreate'])->middleware('auth');
+Route::delete('/tgdedit/delete/{nojnl}/{mgj}', [tgdController::class, 'destroyedit'])->middleware('auth');
+Route::delete('/tgdcreate/delete/{nojnl}/{mgj}', [tgdController::class, 'destroycreate'])->middleware('auth');
+
+Route::post('/tgdcreate/edit', [tgdController::class, 'edittgdcreate'])->middleware('auth');
+Route::post('/tgdedit/edit', [tgdController::class, 'edittgdedit'])->middleware('auth');
 
 /* A shortcut for the following routes: */
 Route::resource('dvs', dvsController::class)->middleware('auth');
@@ -48,6 +67,8 @@ Route::resource('mgj', mgjController::class)->middleware('auth');
 Route::resource('ptkp', ptkpController::class)->middleware('auth');
 Route::resource('cbg', cbgController::class)->middleware('auth');
 Route::resource('bpjs', bpjsController::class)->middleware('auth');
+Route::resource('tgj', tgjController::class)->middleware('auth');
+Route::resource('krd', krdController::class)->middleware('auth');
 
 /* A route to register page. */
 Route::get('register', [registerController::class, 'index'])->name('register');

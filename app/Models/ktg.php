@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ktg extends Model
+class Ktg extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class ktg extends Model
 
     public function mgj()
     {
-        return $this->hasMany(mgj::class);
+        return $this->hasMany(kry::class, 'kry', 'kry');
     }
 }

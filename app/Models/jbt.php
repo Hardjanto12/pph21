@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class jbt extends Model
+class Jbt extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class jbt extends Model
 
     public function kry()
     {
-        return $this->hasMany(kry::class);
+        return $this->hasMany(kry::class, 'kry', 'kry');
     }
 }

@@ -35,10 +35,11 @@
             <label for="ktg" class="col-sm-2 col-form-label">Kategori penghasilan</label>
             <div class="col-sm-10">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Kategori penghasilan" aria-label="kategoripenghasilan"
-                        aria-describedby="kategoripenghasilan" name="ktg" value="{{ Session::get('ktg') }}" id="inputktg" @error('ktg')
-                        is-invalid @enderror required>
-                    <button class="btn btn-outline-primary" onclick="ktgFunction()" type="button" id="btnktg">Pilih</button>
+                    <input type="text" class="form-control" placeholder="Kategori penghasilan"
+                        aria-label="kategoripenghasilan" aria-describedby="kategoripenghasilan" name="ktg"
+                        value="{{ Session::get('ktg') }}" id="inputktg" @error('ktg') is-invalid @enderror required>
+                    <button class="btn btn-outline-primary" onclick="ktgFunction()" type="button"
+                        id="btnktg">Pilih</button>
                 </div>
                 <div class="invalid-feedback">
                     Kategori penghasilan tidak boleh kosong.
@@ -46,7 +47,8 @@
             </div>
         </div>
 
-        <div class="mb-3 row">
+        <div class=
+"mb-3 row">
             <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button>
             </div>
         </div>

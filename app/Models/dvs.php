@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dvs extends Model
+class Dvs extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['dvs', 'name', 'chtime', 'chuser'];
     protected $table = 'dvs';
     protected $primaryKey = 'dvs';
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = ['dvs', 'name', 'chtime', 'chuser'];
 
     public function kry()
     {
-        return $this->hasMany(kry::class);
+        return $this->hasMany(kry::class, 'kry', 'kry');
     }
 }

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\asr;
-use App\Models\dvs;
-use App\Models\jbt;
-use App\Models\kry;
+use App\Models\Kry;
+use App\Models\Krd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -24,19 +22,17 @@ class kryController extends Controller
     public function index(Request $request)
     {
         $request->session()->get('chuser');
-
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
-            $data = kry::where('kry', 'like', "%$katakunci%")
+            $data = Kry::where('kry', 'like', "%$katakunci%")
                 ->orWhere('nik', 'like', "%$katakunci%")
                 ->orWhere('dvs', 'like', "%$katakunci%")
                 ->orWhere('jbt', 'like', "%$katakunci%")
                 ->orWhere('asr', 'like', "%$katakunci%")
                 ->cursorPaginate(10);
         } else {
-            $data = kry::orderBy('kry', 'asc')->cursorPaginate(10);
+            $data = Kry::orderBy('kry', 'asc')->cursorPaginate(10);
         }
-
         return view('kry.index')->with([
             'data' => $data,
             'title' => 'Karyawan',
@@ -50,7 +46,8 @@ class kryController extends Controller
      */
     public function create()
     {
-        return view('kry.create')->with('title', 'Tambah Karyawan');
+        $details = Krd::where('kry', Session::get('kry'))->get();
+        return view('kry.create')->with(['title' => 'Tambah Karyawan', 'krd' => $details]);
     }
 
     /**
@@ -82,71 +79,70 @@ class kryController extends Controller
         Session::flash('bpjs', $request->bpjs);
         $chtime = Carbon::now()->toDateTimeString();
         $chuser = Auth::user()->muserName;
+        if (Kry::where('kry', $request->kry)->exists() == false) {
+            $request->validate([
+                'kry' => 'unique:kry,kry',
+
+            ], [
+                'kry.unique' => 'Kode sudah ada dalam database!',
+            ]);
+            $data = [
+                'kry' => $request->kry,
+                'nik' => $request->nik,
+                'name' => $request->name,
+                'alamat' => $request->alamat,
+                'kota' => $request->kota,
+                'telp' => $request->telp,
+                'kel' => $request->kel,
+                'kec' => $request->kec,
+                'prop' => $request->prop,
+                'gender' => $request->gender,
+                'awal' => $request->awal,
+                'akhir' => $request->akhir,
+                'ptkp' => $request->ptkp,
+                'bpjs' => $request->bpjs,
+                'cbg' => $request->cbg,
+                'dvs' => $request->dvs,
+                'asr' => $request->asr,
+                'jbt' => $request->jbt,
+                'chtime' => $chtime,
+                'chuser' => $chuser
+            ];
+            Kry::create($data);
+        }
+
         $request->validate([
-            'kry' => 'required|unique:kry,kry',
-            'nik' => 'required',
-            'name' => 'required',
-            'alamat' => 'required',
-            'telp' => 'required',
-            'kota' => 'required',
-            'kel' => 'required',
-            'kec' => 'required',
-            'prop' => 'required',
-            'gender' => 'required',
-            'awal' => 'required',
-            'akhir' => 'required',
-            'ptkp' => 'required',
-            'cbg' => 'required',
-            'bpjs' => 'required',
-            'dvs' => 'required',
-            'asr' => 'required',
-            'jbt' => 'required'
+            'kry' => 'required',
+            'mgj' => 'required',
+            'mgjname' => 'required',
+            'mgjktg' => 'required',
+            'umk' => 'required',
         ], [
-            'kry.required' => 'Kode wajib diisi!',
-            'nik.required' => 'NIK wajib diisi!',
-            'name.required' => 'Nama wajib diisi!',
-            'alamat.required' => 'Alamat wajib diisi!',
-            'kota.required' => 'Kota wajib diisi!',
-            'telp.required' => 'No. Telepon wajib diisi!',
-            'kel.required' => 'Kelurahan wajib diisi!',
-            'kec.required' => 'Kecamatan wajib diisi!',
-            'prop.required' => 'Provinsi wajib diisi!',
-            'gender.required' => 'Gender wajib diisi!',
-            'awal.required' => 'Tanggal bergabung wajib diisi!',
-            'akhir.required' => 'Tanggal berhenti wajib diisi!',
-            'ptkp.required' => 'PTKP wajib diisi!',
-            'cbg.required' => 'Cabang wajib diisi!',
-            'bpjs.required' => 'BPJS wajib diisi!',
-            'dvs.required' => 'Divisi wajib diisi!',
-            'asr.required' => 'Asuransi wajib diisi!',
-            'jbt.required' => 'Jabatan wajib diisi!',
-            'kry.unique' => 'Kode sudah ada dalam database!',
+            'kry.required' => 'Kode karyawan wajib diisi!',
+            'mgj.required' => 'Kode penghasilan wajib diisi!',
+            'mgjname.required' => 'Nama wajib diisi!',
+            'mgjktg.required' => 'Kategori penghasilan wajib diisi!',
+            'umk.required' => 'UMK wajib diisi!',
         ]);
 
         $data = [
             'kry' => $request->kry,
-            'nik' => $request->nik,
-            'name' => $request->name,
-            'alamat' => $request->alamat,
-            'kota' => $request->kota,
-            'telp' => $request->telp,
-            'kel' => $request->kel,
-            'kec' => $request->kec,
-            'prop' => $request->prop,
-            'gender' => $request->gender,
-            'awal' => $request->awal,
-            'akhir' => $request->akhir,
-            'ptkp' => $request->ptkp,
-            'bpjs' => $request->bpjs,
-            'cbg' => $request->cbg,
-            'dvs' => $request->dvs,
-            'asr' => $request->asr,
-            'jbt' => $request->jbt,
+            'mgj' => $request->mgj,
+            'name' => $request->mgjname,
+            'ktg' => $request->mgjktg,
+            'umk' => $request->umk,
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
-        kry::create($data);
-        return redirect()->to('kry')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Karyawan']);
+        if (Krd::where('kry', Session::get('kry'))->where('mgj', $request->mgj)->exists()) {
+            $details = Krd::where('kry', Session::get('kry'))->get();
+            return redirect()->to('kry/create')->with(['error' => 'Data sudah ada', 'title' => 'Karyawan', 'krd' => $details]);
+        }
+        Krd::create($data);
+        $details = Krd::where('kry', Session::get('kry'))->get();
+
+        return redirect()->to('kry/create')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Karyawan', 'krd' => $details]);
+        // return redirect()->to('kry')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Karyawan']);
     }
 
     /**
@@ -158,7 +154,7 @@ class kryController extends Controller
     public function show($id)
     {
 
-        $data = kry::where('kry', $id)->first();
+        $data = Kry::where('kry', $id)->first();
         return view('kry.detail')->with('data', $data);
     }
 
@@ -170,8 +166,9 @@ class kryController extends Controller
      */
     public function edit($id)
     {
-        $data = kry::where('kry', $id)->first();
-        return view('kry.edit')->with(['data' => $data, 'title' => 'Karyawan']);
+        $details = Krd::where('kry', $id)->get();
+        $data = Kry::where('kry', $id)->first();
+        return view('kry.edit')->with(['data' => $data, 'title' => 'Karyawan', 'krd' => $details]);
     }
 
     /**
@@ -241,8 +238,39 @@ class kryController extends Controller
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
-        kry::where('kry', $id)->update($data);
-        return redirect()->to('kry')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Karyawan']);
+
+        Kry::where('kry', $id)->update($data);
+
+        $request->validate([
+            'mgj' => 'required',
+            'mgjname' => 'required',
+            'mgjktg' => 'required',
+            'umk' => 'required',
+        ], [
+            'mgj.required' => 'Kode penghasilan wajib diisi!',
+            'mgjname.required' => 'Nama wajib diisi!',
+            'mgjktg.required' => 'Kategori penghasilan wajib diisi!',
+            'umk.required' => 'UMK wajib diisi!',
+        ]);
+
+        $data = [
+            'kry' => $id,
+            'mgj' => $request->mgj,
+            'name' => $request->mgjname,
+            'ktg' => $request->mgjktg,
+            'umk' => $request->umk,
+            'chtime' => Carbon::now()->toDateTimeString(),
+            'chuser' => Auth::user()->muserName
+        ];
+        if (Krd::where('kry', $id)->where('mgj', $request->mgj)->exists()) {
+            $details = Krd::where('kry', Session::get('kry'))->get();
+            return redirect()->to('kry/' . trim($id) . '/edit')->with(['error' => 'Data sudah ada', 'title' => 'Karyawan', 'krd' => $details]);
+        }
+        Krd::create($data);
+        $details = Krd::where('kry', Session::get('kry'))->get();
+
+        return redirect()->to('kry/' . trim($id) . '/edit')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Karyawan', 'krd' => $details]);
+        // return redirect()->to('kry')->with(['success' => 'Berhasil melakukan update data!', 'title' => 'Karyawan', 'krd' => $details]);
     }
 
     /**
@@ -253,7 +281,13 @@ class kryController extends Controller
      */
     public function destroy($id)
     {
-        kry::where('kry', $id)->delete();
+        Kry::where('kry', $id)->delete();
+        Krd::where('kry', $id)->delete();
         return redirect()->to('kry')->with(['success' => 'Berhasil menghapus data!', 'title' => 'Karyawan']);
+    }
+
+    public function deletekrd($id, $mgj)
+    {
+        dd($id . $mgj);
     }
 }
