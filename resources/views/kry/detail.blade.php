@@ -67,3 +67,4 @@
         <td>Cabang</td>
         <td>{{ $data->cbg }}</td>
     </tr>
+</tbody>

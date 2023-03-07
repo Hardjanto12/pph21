@@ -21,7 +21,7 @@
                     <input type="text" class="form-control form-control-sm" name='nik'
                         value="{{ Session::get('nik') }}" id="nik" placeholder="NIK" aria-label="NIK"
                         aria-describedby="nik" @error('nik') is-invalid
-                    @enderror required>
+                    @enderror>
                     <div class="invalid-feedback">
                         NIK tidak boleh kosong.
                     </div>
@@ -34,7 +34,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="Nama" aria-label="Nama"
                         aria-describedby="name" name="name" value="{{ Session::get('name') }}" id="name"
                         @error('name')
-                    is-invalid @enderror required>
+                    is-invalid @enderror>
                     <div class="invalid-feedback">
                         Nama tidak boleh kosong.
                     </div>
@@ -46,7 +46,7 @@
                 <div class="col-sm-10">
                     <input type="text" class="form-control form-control-sm" placeholder="Alamat" aria-label="Alamat"
                         aria-describedby="alamat" name="alamat" value="{{ Session::get('alamat') }}" id="alamat"
-                        @error('alamat') is-invalid @enderror required>
+                        @error('alamat') is-invalid @enderror>
                     <div class="invalid-feedback">
                         Alamat tidak boleh kosong.
                     </div>
@@ -59,7 +59,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="Kota" aria-label="Kota"
                         aria-describedby="kota" name="kota" value="{{ Session::get('kota') }}" id="kota"
                         @error('kota')
-                    is-invalid @enderror required>
+                    is-invalid @enderror>
                     <div class="invalid-feedback">
                         Kota tidak boleh kosong.
                     </div>
@@ -71,7 +71,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="Kelurahan"
                         aria-label="Kelurahan" aria-describedby="kel" name="kel" value="{{ Session::get('kel') }}"
                         id="kel" @error('kel')
-                    is-invalid @enderror required>
+                    is-invalid @enderror>
                     <div class="invalid-feedback">
                         Kelurahan tidak boleh kosong.
                     </div>
@@ -81,7 +81,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="Kecamatan"
                         aria-label="Kecamatan" aria-describedby="kec" name="kec" value="{{ Session::get('kec') }}"
                         id="kec" @error('kec')
-                    is-invalid @enderror required>
+                    is-invalid @enderror>
                     <div class="invalid-feedback">
                         Kecamatan tidak boleh kosong.
                     </div>
@@ -94,7 +94,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="Provinsi"
                         aria-label="Provinsi" aria-describedby="prop" name="prop" value="{{ Session::get('prop') }}"
                         id="prop" @error('prop')
-                    is-invalid @enderror required>
+                    is-invalid @enderror>
                     <div class="invalid-feedback">
                         Provinsi tidak boleh kosong.
                     </div>
@@ -107,7 +107,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="Telepon"
                         aria-label="Telepon" aria-describedby="telp" name="telp" value="{{ Session::get('telp') }}"
                         id="telp" @error('telp')
-                    is-invalid @enderror required>
+                    is-invalid @enderror>
                     <div class="invalid-feedback">
                         Telepon tidak boleh kosong.
                     </div>
@@ -130,22 +130,21 @@
                 <label for="awal" class="col-sm-2 col-form-label">Tanggal Awal</label>
                 <div class="col-sm-4">
                     <input type="date" class="form-control form-control-sm" name='awal'
-                        value="{{ Session::get('awal') }}" id="awal" required>
+                        value="{{ Session::get('awal') }}" id="awal">
                 </div>
                 <label for="akhir" class="col-sm-2 col-form-label">Tanggal Akhir</label>
                 <div class="col-sm-4">
                     <input type="date" class="form-control form-control-sm" name='akhir'
-                        value="{{ Session::get('akhir') }}" id="akhir" required>
+                        value="{{ Session::get('akhir') }}" id="akhir">
                 </div>
             </div>
-
             <div class="row">
                 <label for="dvs" class="col-sm-2 col-form-label">Divisi</label>
                 <div class="col-sm-4">
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="Divisi"
                             aria-label="Divisi" aria-describedby="divisi" name="dvs"
-                            value="{{ Session::get('dvs') }}" id="inputdvs" @error('dvs') is-invalid @enderror required>
+                            value="{{ Session::get('dvs') }}" id="inputdvs" @error('dvs') is-invalid @enderror>
                         <button class="btn btn-outline-primary btn-sm" onclick="dvsFunction()" type="button"
                             id="btndvs">Pilih</button>
                     </div>
@@ -159,7 +158,7 @@
                         <input type="text" class="form-control form-control-sm" placeholder="Jabatan"
                             aria-label="Jabatan" aria-describedby="jabatan" name="jbt"
                             value="{{ Session::get('jbt') }}" id="inputjbt" @error('jbt') is-invalid @enderror
-                            required>
+                        >
                         <button class="btn btn-outline-primary btn-sm" onclick="jbtFunction()" type="button"
                             id="btnjbt">Pilih</button>
                     </div>
@@ -175,7 +174,7 @@
                         <input type="text" class="form-control form-control-sm" placeholder="Asuransi"
                             aria-label="Asuransi" aria-describedby="asuransi" name="asr"
                             value="{{ Session::get('asr') }}" id="inputasr" @error('asr') is-invalid @enderror
-                            required>
+                        >
                         <button class="btn btn-outline-primary btn-sm" onclick="asrFunction()" type="button"
                             id="btnasr">Pilih</button>
                     </div>
@@ -188,7 +187,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="PTKP" aria-label="PTKP"
                             aria-describedby="ptkp" name="ptkp" value="{{ Session::get('ptkp') }}" id="inputptkp"
-                            @error('ptkp') is-invalid @enderror required>
+                            @error('ptkp') is-invalid @enderror>
                         <button class="btn btn-outline-primary btn-sm" onclick="ptkpFunction()" type="button"
                             id="btnptkp">Pilih</button>
                     </div>
@@ -205,7 +204,7 @@
                         <input type="text" class="form-control form-control-sm" placeholder="Cabang"
                             aria-label="Cabang" aria-describedby="cbg" name="cbg" value="{{ Session::get('cbg') }}"
                             id="inputcbg" @error('cbg')
-                        is-invalid @enderror required>
+                        is-invalid @enderror>
                         <button class="btn btn-outline-primary btn-sm" onclick="cbgFunction()" type="button"
                             id="btncbg">Pilih</button>
                     </div>
@@ -218,7 +217,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="BPJS" aria-label="BPJS"
                             aria-describedby="bpjs" name="bpjs" value="{{ Session::get('bpjs') }}" id="inputbpjs"
-                            @error('bpjs') is-invalid @enderror required>
+                            @error('bpjs') is-invalid @enderror>
                         <button class="btn btn-outline-primary btn-sm" onclick="bpjsFunction()" type="button"
                             id="btnbpjs">Pilih</button>
                     </div>
@@ -228,6 +227,10 @@
                 </div>
             </div>
 
+            <div class="row mt-2">
+                <div class="h5">Detail</div>
+            </div>
+
             <div class="row">
                 <label for="mgj" class="col-sm-2 col-form-label">Penghasilan</label>
                 <div class="col-sm-10">
@@ -235,7 +238,7 @@
                         <input type="text" class="form-control form-control-sm" placeholder="Penghasilan"
                             aria-label="Penghasilan" aria-describedby="mgj" name="mgj" id="inputmgj"
                             @error('mgj')
-                        is-invalid @enderror required>
+                        is-invalid @enderror>
                         <button class="btn btn-outline-primary btn-sm" onclick="mgjFunction()" type="button"
                             id="btnmgj">Pilih</button>
                     </div>
@@ -251,7 +254,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="Nama Penghasilan"
                             aria-label="Nama Penghasilan" aria-describedby="mgjname" name="mgjname" id="inputmgjname"
-                            @error('mgjname') is-invalid @enderror required>
+                            @error('mgjname') is-invalid @enderror>
                     </div>
                     <div class="invalid-feedback">
                         Nama Penghasilan tidak boleh kosong.
@@ -265,7 +268,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="Kategori Penghasilan"
                             aria-label="Kategori Penghasilan" aria-describedby="mgjktg" name="mgjktg" id="inputmgjktg"
-                            @error('mgjktg') is-invalid @enderror required>
+                            @error('mgjktg') is-invalid @enderror>
                     </div>
                     <div class="invalid-feedback">
                         Kategori Penghasilan tidak boleh kosong.
@@ -279,7 +282,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="UMK" aria-label="UMK"
                         aria-describedby="umk" name="umk" value="{{ Session::get('umk') }}" id="umk"
                         @error('umk')
-                    is-invalid @enderror required>
+                    is-invalid @enderror>
                     <div class="invalid-feedback">
                         UMK tidak boleh kosong.
                     </div>

@@ -41,8 +41,17 @@ class tgjController extends Controller
      */
     public function create()
     {
+        if (is_null(session()->get('nojnl'))) {
+            $n = Tgj::count() + 1;
+            $y = Carbon::now()->format('Y');
+            $m = Carbon::now()->format('m');
+            $nojnl = "GJB-" . $y . $m . sprintf('%05d', $n);
+            Session::flash('nojnl', $nojnl);
+        }
+        $headers = Tgj::where('nojnl', Session::get('nojnl'))->get();
         $details = Tgd::where('nojnl', Session::get('nojnl'))->get();
-        return view('tgj.create')->with(['title' => 'Tambah Penghasilan', 'tgd' => $details]);
+
+        return view('tgj.create')->with(['title' => 'Tambah Penghasilan', 'tgd' => $details, 'tgj' => $headers]);
     }
 
     /**
@@ -53,11 +62,11 @@ class tgjController extends Controller
      */
     public function store(Request $request)
     {
-        Session::flash('nojnl', $request->nojnl);
-        Session::flash('date', $request->date);
-        Session::flash('kry', $request->kry);
-        Session::flash('nik', $request->nik);
-        Session::flash('name', $request->name);
+        Session::put('nojnl', $request->nojnl);
+        Session::put('date', $request->date);
+        Session::put('kry', $request->kry);
+        Session::put('nik', $request->nik);
+        Session::put('name', $request->name);
         $masa = date('m', strtotime($request->date));
         $tahun = date('Y', strtotime($request->date));
         $chtime = Carbon::now()->toDateTimeString();
@@ -68,13 +77,13 @@ class tgjController extends Controller
                 'kry' => 'required',
                 'nik' => 'required',
                 'name' => 'required',
-                'date' => 'required',
+                // 'date' => 'required',
             ], [
                 'nojnl.required' => 'Kode wajib diisi!',
                 'kry.required' => 'Kode wajib diisi!',
                 'nik.required' => 'NIK wajib diisi!',
                 'name.required' => 'Nama wajib diisi!',
-                'date.required' => 'Tanggal wajib diisi!',
+                // 'date.required' => 'Tanggal wajib diisi!',
                 'nojnl' => 'Kode sudah ada!',
             ]);
 
@@ -92,24 +101,47 @@ class tgjController extends Controller
             Tgj::create($data);
         }
         $datakrd = Krd::where('kry', $request->kry)->get();
-        // dd($datakrd);
-        foreach ($datakrd as $data) {
-            // if (Tgd::where('nojnl', $request->nojnl)->where('mgj', $data->mgj)->exists() == false) {
-            $nojnl = $request->nojnl;
-            $data = [
-                'nojnl' => $nojnl,
-                'mgj' => $data->mgj,
-                'name' => $data->name,
-                'ktg' => $data->ktg,
-                'umk' => $data->umk
-            ];
-            Tgd::create($data);
-            // }
+        if (Tgd::where('nojnl', Session::get('nojnl'))->exists() == false) {
+            foreach ($datakrd as $data) {
+                $nojnl = $request->nojnl;
+                $data = [
+                    'nojnl' => $nojnl,
+                    'mgj' => $data->mgj,
+                    'name' => $data->name,
+                    'ktg' => $data->ktg,
+                    'umk' => $data->umk
+                ];
+                Tgd::create($data);
+            }
         }
-        // exit;
+
         $details = Tgd::where('nojnl', Session::get('nojnl'))->get();
         return redirect()->to('tgj/create')->with(['success' => 'Header ditambahkan', 'title' => 'Penghasilan', 'tgd' => $details]);
     }
+
+    public function save()
+    {
+        Session::forget('nojnl');
+        Session::forget('kry');
+        Session::forget('nik');
+        Session::forget('name');
+        Session::forget('date');
+        return redirect()->to('tgj')->with(['success' => 'Berhasil menambahkan data!', 'title' => 'Penghasilan']);
+    }
+
+    public function cancel()
+    {
+        Tgj::where('nojnl', Session::get('nojnl'))->delete();
+        Tgd::where('nojnl', Session::get('nojnl'))->delete();
+        Session::forget('nojnl');
+        Session::forget('kry');
+        Session::forget('nik');
+        Session::forget('name');
+        Session::forget('date');
+        return redirect()->to('tgj')->with(['title' => 'Penghasilan']);
+    }
+
+
 
     /**
      * Display the specified resource.
@@ -150,12 +182,12 @@ class tgjController extends Controller
             'kry' => 'required',
             'nik' => 'required',
             'name' => 'required',
-            'date' => 'required',
+            // 'date' => 'required',
         ], [
             'kry.required' => 'Kode wajib diisi!',
             'nik.required' => 'NIK wajib diisi!',
             'name.required' => 'Nama wajib diisi!',
-            'date.required' => 'Tanggal wajib diisi!'
+            // 'date.required' => 'Tanggal wajib diisi!'
         ]);
 
         $data = [

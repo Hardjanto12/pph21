@@ -4,7 +4,7 @@
     <form action='{{ url('tgj') }}' method='post' class="needs-validation" novalidate>
         @csrf
         <div class="mb-2 p-3 bg-body rounded shadow-sm">
-            <a href="{{ url('tgj') }}" class="btn btn-secondary mb-2">Kembali</a>
+            <a href="{{ url('tgj/cancel') }}" class="btn btn-secondary mb-2">Batal</a>
             <div class="mb-2 p-3 rounded shadow-sm bg-success text-white">
                 <div class="row">
                     <label for="nojnl" class="col-sm-1 col-form-label sm-form-label">Kode</label>
@@ -25,18 +25,6 @@
                             Tanggal tidak boleh kosong.
                         </div>
                     </div>
-                    {{-- <label for="masa" class="col-sm-1 col-form-label sm-form-label">Masa</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control form-control-sm" name='masa'
-                            value="{{ Session::get('masa') }}" id="masa" placeholder="Masa" aria-label="Masa"
-                            aria-describedby="kode" @error('masa') is-invalid @enderror required>
-                    </div>
-                    <label for="tahun" class="col-sm-1 col-form-label sm-form-label">Tahun</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control form-control-sm" name='tahun'
-                            value="{{ Session::get('tahun') }}" id="tahun" placeholder="Tahun" aria-label="Tahun"
-                            aria-describedby="kode" @error('tahun') is-invalid @enderror required>
-                    </div> --}}
                 </div>
                 <div class="row">
                     <label for="kry" class="col-sm-1 col-form-label">Karyawan</label>
@@ -132,14 +120,14 @@
             </div>
 
             <div class="row">
-                <label for="umk" class="col-sm-2 col-form-label">UMK</label>
+                <label for="umk" class="col-sm-2 col-form-label">Nilai</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control form-control-sm" placeholder="UMK" aria-label="UMK"
+                    <input type="text" class="form-control form-control-sm" placeholder="Nilai" aria-label="Nilai"
                         aria-describedby="umk" name="umk" value="{{ Session::get('umk') }}" id="umk"
                         @error('umk')
                 is-invalid @enderror required>
                     <div class="invalid-feedback">
-                        UMK tidak boleh kosong.
+                        Nilai tidak boleh kosong.
                     </div>
                 </div>
             </div>
@@ -172,9 +160,9 @@
                             <td>
                                 <a class="btn btn-warning btn-sm"
                                     onclick="editTgd([
-                                        '{{ trim($tg->mgj) }}', 
-                                        '{{ trim($tg->name) }}', 
-                                        '{{ trim($tg->ktg) }}', 
+                                        '{{ trim($tg->mgj) }}',
+                                        '{{ trim($tg->name) }}',
+                                        '{{ trim($tg->ktg) }}',
                                         '{{ trim($tg->umk) }}'])"
                                     id="btnSelect">Edit Data</a>
                             </td>
@@ -184,7 +172,7 @@
             </table>
         </div>
         <div class="row">
-            <a href="{{ url('tgj') }}" <div class="col-sm-10"><button type="submit" class="btn btn-primary"
+            <a href="{{ url('tgj/save') }}" <div class="col-sm-10"><button type="submit" class="btn btn-primary"
                     name="submit">Simpan</button>
             </a>
         </div>

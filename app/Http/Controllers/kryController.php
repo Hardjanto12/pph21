@@ -21,6 +21,11 @@ class kryController extends Controller
 
     public function index(Request $request)
     {
+        Session::forget('nojnl');
+        Session::forget('kry');
+        Session::forget('nik');
+        Session::forget('name');
+        Session::forget('date');
         $request->session()->get('chuser');
         $katakunci = $request->katakunci;
         if (strlen($katakunci)) {
@@ -180,43 +185,43 @@ class kryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nik' => 'required',
-            'dvs' => 'required',
-            'jbt' => 'required',
-            'asr' => 'required',
-            'name' => 'required',
-            'alamat' => 'required',
-            'kota' => 'required',
-            'telp' => 'required',
-            'kel' => 'required',
-            'kec' => 'required',
-            'prop' => 'required',
-            'gender' => 'required',
-            'awal' => 'required',
-            'akhir' => 'required',
-            'ptkp' => 'required',
-            'cbg' => 'required',
-            'bpjs' => 'required',
-        ], [
-            'nik.required' => 'NIK wajib diisi!',
-            'dvs.required' => 'Divisi wajib diisi!',
-            'jbt.required' => 'Jabatan wajib diisi!',
-            'asr.required' => 'Asuransi wajib diisi!',
-            'name.required' => 'Nama wajib diisi!',
-            'alamat.required' => 'Alamat wajib diisi!',
-            'kota.required' => 'Kota wajib diisi!',
-            'telp.required' => 'Kota wajib diisi!',
-            'kel.required' => 'Kelurahan wajib diisi!',
-            'kec.required' => 'Kecamatan wajib diisi!',
-            'prop.required' => 'Provinsi wajib diisi!',
-            'gender.required' => 'Gender wajib diisi!',
-            'awal.required' => 'Tanggal bergabung wajib diisi!',
-            'akhir.required' => 'Tanggal berhenti wajib diisi!',
-            'ptkp.required' => 'PTKP wajib diisi!',
-            'cbg.required' => 'Cabang wajib diisi!',
-            'bpjs.required' => 'BPJS wajib diisi!',
-        ]);
+        // $request->validate([
+        //     'nik' => 'required',
+        //     'dvs' => 'required',
+        //     'jbt' => 'required',
+        //     'asr' => 'required',
+        //     'name' => 'required',
+        //     'alamat' => 'required',
+        //     'kota' => 'required',
+        //     'telp' => 'required',
+        //     'kel' => 'required',
+        //     'kec' => 'required',
+        //     'prop' => 'required',
+        //     'gender' => 'required',
+        //     'awal' => 'required',
+        //     'akhir' => 'required',
+        //     'ptkp' => 'required',
+        //     'cbg' => 'required',
+        //     'bpjs' => 'required',
+        // ], [
+        //     'nik.required' => 'NIK wajib diisi!',
+        //     'dvs.required' => 'Divisi wajib diisi!',
+        //     'jbt.required' => 'Jabatan wajib diisi!',
+        //     'asr.required' => 'Asuransi wajib diisi!',
+        //     'name.required' => 'Nama wajib diisi!',
+        //     'alamat.required' => 'Alamat wajib diisi!',
+        //     'kota.required' => 'Kota wajib diisi!',
+        //     'telp.required' => 'Kota wajib diisi!',
+        //     'kel.required' => 'Kelurahan wajib diisi!',
+        //     'kec.required' => 'Kecamatan wajib diisi!',
+        //     'prop.required' => 'Provinsi wajib diisi!',
+        //     'gender.required' => 'Gender wajib diisi!',
+        //     'awal.required' => 'Tanggal bergabung wajib diisi!',
+        //     'akhir.required' => 'Tanggal berhenti wajib diisi!',
+        //     'ptkp.required' => 'PTKP wajib diisi!',
+        //     'cbg.required' => 'Cabang wajib diisi!',
+        //     'bpjs.required' => 'BPJS wajib diisi!',
+        // ]);
         $data = [
             'nik' => $request->nik,
             'dvs' => $request->dvs,

@@ -31,7 +31,7 @@
         <td>UMK</td>
         <td>@rupiah($data->umk)</td>
     </tr>
-
+</tbody>
 {{-- <tbody>
     <tr>
         @foreach ($kolom as $namakolom)

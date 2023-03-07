@@ -9,10 +9,12 @@
     </tr>
     <tr>
         <td>Tanggal Awal</td>
+        {{-- <td>{{ $data->awal }}</td> --}}
         <td>{{ \Carbon\Carbon::parse($data->awal)->format('d-M-Y') }}</td>
     </tr>
     <tr>
         <td>Tanggal Akhir</td>
+        {{-- <td>{{ $data->akhir }}</td> --}}
         <td>{{ \Carbon\Carbon::parse($data->akhir)->format('d-M-Y') }}</td>
     </tr>
     <tr>

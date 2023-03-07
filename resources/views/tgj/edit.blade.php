@@ -25,18 +25,6 @@
                             Tanggal tidak boleh kosong.
                         </div>
                     </div>
-                    {{-- <label for="masa" class="col-sm-1 col-form-label sm-form-label">Masa</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control form-control-sm" name='masa'
-                            value="{{ Session::get('masa') }}" id="masa" placeholder="Masa" aria-label="Masa"
-                            aria-describedby="kode" @error('masa') is-invalid @enderror required>
-                    </div>
-                    <label for="tahun" class="col-sm-1 col-form-label sm-form-label">Tahun</label>
-                    <div class="col-sm-1">
-                        <input type="text" class="form-control form-control-sm" name='tahun'
-                            value="{{ Session::get('tahun') }}" id="tahun" placeholder="Tahun" aria-label="Tahun"
-                            aria-describedby="kode" @error('tahun') is-invalid @enderror required>
-                    </div> --}}
                 </div>
                 <div class="row">
                     <label for="kry" class="col-sm-1 col-form-label">Karyawan</label>
@@ -172,9 +160,9 @@
                             <td>
                                 <a class="btn btn-warning btn-sm"
                                     onclick="editTgd([
-                                        '{{ trim($tg->mgj) }}', 
-                                        '{{ trim($tg->name) }}', 
-                                        '{{ trim($tg->ktg) }}', 
+                                        '{{ trim($tg->mgj) }}',
+                                        '{{ trim($tg->name) }}',
+                                        '{{ trim($tg->ktg) }}',
                                         '{{ trim($tg->umk) }}'])"
                                     id="btnSelect">Edit Data</a>
                             </td>

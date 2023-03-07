@@ -97,7 +97,7 @@ class tgdController extends Controller
 
         $details = Tgd::where('nojnl', $request->nojnltgd)->get();
 
-        return redirect()->to('tgj/create')->with(['success' => 'Berhasil update data!', 'title' => 'Edit Penghasilan', 'tgd' => $details]);
+        return redirect()->to('tgj/create')->with(['success' => 'Berhasil update data!', 'title' => 'Edit Penghasilan', 'tgd' => $details,]);
     }
 
     public function edittgdedit(Request $request)

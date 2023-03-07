@@ -57,6 +57,9 @@ Route::delete('/tgdcreate/delete/{nojnl}/{mgj}', [tgdController::class, 'destroy
 Route::post('/tgdcreate/edit', [tgdController::class, 'edittgdcreate'])->middleware('auth');
 Route::post('/tgdedit/edit', [tgdController::class, 'edittgdedit'])->middleware('auth');
 
+Route::get('/tgj/save', [tgjController::class, 'save'])->middleware('auth');
+Route::get('/tgj/cancel', [tgjController::class, 'cancel'])->middleware('auth');
+
 /* A shortcut for the following routes: */
 Route::resource('dvs', dvsController::class)->middleware('auth');
 Route::resource('jbt', jbtController::class)->middleware('auth');
