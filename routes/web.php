@@ -89,3 +89,7 @@ Route::post('changepassword', [registerController::class, 'updatepassword'])->mi
 /* A route to home page. */
 Route::get('home', [homeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/', [homeController::class, 'index'])->name('home')->middleware('auth');
+
+Route::get('phpinfo', function () {
+    phpinfo();
+});
