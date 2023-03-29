@@ -87,5 +87,37 @@ Route::get('changepassword', [registerController::class, 'changepassword'])->nam
 Route::post('changepassword', [registerController::class, 'updatepassword'])->middleware('auth');
 
 /* A route to home page. */
-Route::get('home', [homeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/', [homeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('home', [homeController::class, 'index'])->name('home')->middleware('auth');
+
+
+Route::get('phpinfo', function () {
+    phpinfo();
+});
+
+Route::get('mac', function () {
+    // PHP code to get the MAC address of Server
+    $MAC = exec('getmac');
+    // Storing 'getmac' value in $MAC
+    $MAC = strtok($MAC, ' ');
+    echo "MAC address of Server is: $MAC <br>";
+    echo getHostByName(getHostName()) . "<br>";
+
+    // Function to get the client IP address
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if (isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if (isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if (isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    echo $ipaddress;
+});
