@@ -138,6 +138,29 @@
                         value="{{ Session::get('akhir') }}" id="akhir">
                 </div>
             </div>
+
+            <div class="row mb-2">
+                <label for="grossup" class="col-sm-2 col-form-label">Gross Up</label>
+                <div class="col-sm-4">
+                    <select class="form-select form-select-sm" id="grossup" name="grossup">
+                        <option value="">Pilih opsi</option>
+                        <option value="1">Ya</option>
+                        <option value="0">Tidak</option>
+                    </select>
+                </div>
+                <label for="wpasing" class="col-sm-2 col-form-label">WP Asing</label>
+                <div class="col-sm-4">
+                    <select class="form-select form-select-sm" id="wpasing" name="wpasing">
+                        <option value="">Pilih opsi</option>
+                        <option value="1">Ya</option>
+                        <option value="0">Tidak</option>
+                    </select>
+                </div>
+            </div>
+            
+            <hr>
+
+            {{-- Input Divisi & Jabatan --}}
             <div class="row">
                 <label for="dvs" class="col-sm-2 col-form-label">Divisi</label>
                 <div class="col-sm-4">
@@ -157,8 +180,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="Jabatan"
                             aria-label="Jabatan" aria-describedby="jabatan" name="jbt"
-                            value="{{ Session::get('jbt') }}" id="inputjbt" @error('jbt') is-invalid @enderror
-                        >
+                            value="{{ Session::get('jbt') }}" id="inputjbt" @error('jbt') is-invalid @enderror>
                         <button class="btn btn-outline-primary btn-sm" onclick="jbtFunction()" type="button"
                             id="btnjbt">Pilih</button>
                     </div>
@@ -167,14 +189,14 @@
                     </div>
                 </div>
             </div>
+            {{-- Input Asuransi & PTKP --}}
             <div class="row">
                 <label for="asr" class="col-sm-2 col-form-label">Asuransi</label>
                 <div class="col-sm-4">
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm" placeholder="Asuransi"
                             aria-label="Asuransi" aria-describedby="asuransi" name="asr"
-                            value="{{ Session::get('asr') }}" id="inputasr" @error('asr') is-invalid @enderror
-                        >
+                            value="{{ Session::get('asr') }}" id="inputasr" @error('asr') is-invalid @enderror>
                         <button class="btn btn-outline-primary btn-sm" onclick="asrFunction()" type="button"
                             id="btnasr">Pilih</button>
                     </div>
@@ -196,7 +218,7 @@
                     </div>
                 </div>
             </div>
-
+            {{-- Input Cabang & BPJS --}}
             <div class="row">
                 <label for="cbg" class="col-sm-2 col-form-label">Cabang</label>
                 <div class="col-sm-4">
@@ -226,9 +248,10 @@
                     </div>
                 </div>
             </div>
-
+            <hr>
+            {{-- Detail --}}
             <div class="row mt-2">
-                <div class="h5">Detail</div>
+                <div class="h5 fw-bold">Detail</div>
             </div>
 
             <div class="row">

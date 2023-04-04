@@ -14,6 +14,8 @@ class Ptkp extends Model
         'akhir',
         'val2',
         'grup',
+        'stt',
+        'tanggungan',
         'chtime',
         'chuser'
     ];

@@ -24,25 +24,25 @@
 
         <div class="mb-3 row">
             <label for="awal" class="col-sm-2 col-form-label">Tanggal Awal</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
                 <input type="date" class="form-control" name='awal' value="{{ $data->awal }}" id="awal">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="akhir" class="col-sm-2 col-form-label">Tanggal Akhir</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
                 <input type="date" class="form-control" name='akhir' value="{{ $data->akhir }}" id="akhir">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="tarif" class="col-sm-2 col-form-label">Tarif</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" name='tarif' value="{{ $data->tarif }}" id="tarif">
+            <div class="col-sm-2">
+                <input type="number" class="form-control" max="99" name='tarif' value="{{ $data->tarif }}" id="tarif">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="penanggung" class="col-sm-2 col-form-label">Penanggung Biaya</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
                 <select class="form-select" name="penanggung" id="penanggung" value="{{ Session::get('penanggung') }}">
                     <option {{ trim($data->penanggung) == '' ? 'selected' : '' }}>Pilih</option>
                     <option value="Perusahaan" {{ trim($data->penanggung) == 'Perusahaan' ? 'selected' : '' }}>Perusahaan
@@ -53,7 +53,7 @@
         </div>
         <div class="mb-3 row">
             <label for="pengurangpph21" class="col-sm-2 col-form-label">Pengurangan PPH</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
                 <select class="form-select" name="pengurangpph21" id="pengurangpph21"
                     value="{{ Session::get('pengurangpph21') }}">
                     <option {{ trim($data->pengurangpph21) == '' ? 'selected' : '' }}>Pilih</option>
@@ -69,5 +69,7 @@
         </div>
     </div>
 </form>
+<script type="text/javascript" src="{{ asset('js/spacetooltip.js') }}"></script>
+
 @endsection
 <!-- AKHIR FORM -->

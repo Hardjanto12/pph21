@@ -11,9 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link href="{{ asset('css/sidebars.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/nav.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/css/sidebars.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/css/nav.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -46,12 +46,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="{{ asset('js/sidebars.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/opentab.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/style.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/detail.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/edittgd.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/sidebars.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery-3.6.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/opentab.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/style.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/detail.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/edittgd.js') }}"></script>
 </body>
 
 </html>

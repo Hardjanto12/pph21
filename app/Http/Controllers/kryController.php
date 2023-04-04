@@ -110,6 +110,8 @@ class kryController extends Controller
                 'dvs' => $request->dvs,
                 'asr' => $request->asr,
                 'jbt' => $request->jbt,
+                'grossup' => $request->grossup,
+                'wpasing' => $request->wpasing,
                 'chtime' => $chtime,
                 'chuser' => $chuser
             ];
@@ -240,6 +242,8 @@ class kryController extends Controller
             'ptkp' => $request->ptkp,
             'bpjs' => $request->bpjs,
             'cbg' => $request->cbg,
+            'grossup' => $request->grossup,
+            'wpasing' => $request->wpasing,
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];

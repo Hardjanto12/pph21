@@ -25,7 +25,7 @@ class selectController extends Controller
         } else {
             $data = Dvs::orderBy('dvs', 'asc')->cursorPaginate(10);
         }
-        return view('Dvs.select')->with(['data' => $data, 'title' => 'Pilih Divisi']);
+        return view('dvs.select')->with(['data' => $data, 'title' => 'Pilih Divisi']);
     }
 
     public function selectjbt()

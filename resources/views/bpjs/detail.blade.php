@@ -19,7 +19,7 @@
     </tr>
     <tr>
         <td>Tarif</td>
-        <td>{{ $data->tarif }}</td$data->
+        <td>{{ round($data->tarif) . "%" }}</td$data->
     </tr>
     <tr>
         <td>Penanggung</td>

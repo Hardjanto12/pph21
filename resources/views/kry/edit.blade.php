@@ -141,6 +141,26 @@
                 </div>
             </div>
 
+            <div class="row mb-2">
+                <label for="grossup" class="col-sm-2 col-form-label">Gross Up</label>
+                <div class="col-sm-4">
+                    <select class="form-select form-select-sm" id="grossup" name="grossup">
+                        <option value="">Pilih opsi</option>
+                        <option value="1" {{ trim($data->grossup) == '1' ? 'selected' : '' }}>Ya</option>
+                        <option value="0" {{ trim($data->grossup) == '0' ? 'selected' : '' }}>Tidak</option>
+                    </select>
+                </div>
+                <label for="wpasing" class="col-sm-2 col-form-label">WP Asing</label>
+                <div class="col-sm-4">
+                    <select class="form-select form-select-sm" id="wpasing" name="wpasing">
+                        <option value="">Pilih opsi</option>
+                        <option value="1" {{ trim($data->wpasing) == '1' ? 'selected' : '' }}>Ya</option>
+                        <option value="0" {{ trim($data->wpasing) == '0' ? 'selected' : '' }}>Tidak</option>
+                    </select>
+                </div>
+            </div>
+
+            <hr>
 
             <div class="row">
                 <label for="dvs" class="col-sm-2 col-form-label">Divisi</label>

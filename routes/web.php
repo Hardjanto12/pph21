@@ -17,9 +17,12 @@ use App\Http\Controllers\tgjController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\tableController;
 use App\Http\Controllers\tgdController;
 
-use App\Http\Controllers\createController;
+
+
+// use App\Http\Controllers\createController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +35,8 @@ use App\Http\Controllers\createController;
 |
 */
 
-Route::get('/createdata/ktg', [createController::class, 'createKtg'])->middleware('auth');
-Route::get('/createdata/mgj', [createController::class, 'createMgj'])->middleware('auth');
+// Route::get('/createdata/ktg', [createController::class, 'createKtg'])->middleware('auth');
+// Route::get('/createdata/mgj', [createController::class, 'createMgj'])->middleware('auth');
 
 
 /* A route to selectdvs, selectasr, selectjbt, and selectktg. */
@@ -89,3 +92,6 @@ Route::post('changepassword', [registerController::class, 'updatepassword'])->mi
 /* A route to home page. */
 Route::get('home', [homeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/', [homeController::class, 'index'])->name('home')->middleware('auth');
+
+// get all table
+Route::get('/table', [tableController::class, 'index' ])->name('home')->middleware('auth');

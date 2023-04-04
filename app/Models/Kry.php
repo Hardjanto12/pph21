@@ -30,6 +30,8 @@ class Kry extends Model
         'prop',
         'gender',
         'telp',
+        'wpasing',
+        'grossup',
         'chtime',
         'chuser'
     ];

@@ -35,8 +35,8 @@
                 <th class="col-md-1">No.</th>
                 <th class="col-md-1">Kode</th>
                 <th class="col-md-2">Nama</th>
-                <th class="col-md-2">Nominal
-                <th class="col-md-2">Nominal per hari</th>
+                <th class="col-md-2">Nilai Awal</th>
+                <th class="col-md-2">Nilai Akhir</th>
                 <th class="col-md-2">Status</th>
                 <th class="col-md-2">Aksi</th>
             </tr>

@@ -53,6 +53,8 @@ class ptkpController extends Controller
         Session::flash('akhir', $request->akhir);
         Session::flash('val2', $request->val2);
         Session::flash('grup', $request->grup);
+        Session::flash('stt', $request->stt);
+        Session::flash('tanggungan', $request->tanggungan);
         $chtime = Carbon::now()->toDateTimeString();
         $chuser = Auth::user()->muserName;
 
@@ -64,6 +66,8 @@ class ptkpController extends Controller
             'akhir' => 'required',
             'val2' => 'required',
             'grup' => 'required',
+            'stt' => 'required',
+            'tanggungan' => 'required',
         ], [
             'ptkp.required' => 'Kode wajib diisi!',
             'ptkp.unique' => 'Kode sudah ada dalam database!',
@@ -73,6 +77,8 @@ class ptkpController extends Controller
             'akhir.required' => 'Tanggal berakhir wajib diisi!',
             'val2.required' => 'Nominal per hari wajib diisi!',
             'grup.required' => 'Grup wajib diisi!',
+            'stt.required' => 'Status wajib diisi!',
+            'Tanggungan.required' => 'Tanggungan wajib diisi!',
         ]);
         $data = [
             'ptkp' => $request->ptkp,
@@ -82,6 +88,8 @@ class ptkpController extends Controller
             'akhir' => $request->akhir,
             'val2' => $request->val2,
             'grup' => $request->grup,
+            'stt' => $request->stt,
+            'tanggungan' => $request->tanggungan,
             'chtime' => $chtime,
             'chuser' => $chuser
         ];
@@ -126,7 +134,9 @@ class ptkpController extends Controller
             'awal' => 'required',
             'akhir' => 'required',
             'val2' => 'required',
-            'grup' => 'required'
+            'grup' => 'required',
+            'stt' => 'required',
+            'tanggungan' => 'required'
         ], [
             'name.required' => 'Nama wajib diisi!',
             'val.required' => 'Nominal wajib diisi!',
@@ -134,6 +144,8 @@ class ptkpController extends Controller
             'akhir.required' => 'Tanggal berakhir wajib diisi!',
             'val2.required' => 'Nominal per hari wajib diisi!',
             'grup.required' => 'Grup wajib diisi!',
+            'stt.required' => 'Status wajib diisi!',
+            'tanggungan.required' => 'Tanggungan wajib diisi!',
         ]);
         $data = [
             'name' => $request->name,
@@ -142,6 +154,8 @@ class ptkpController extends Controller
             'akhir' => $request->akhir,
             'val2' => $request->val2,
             'grup' => $request->grup,
+            'stt' => $request->stt,
+            'tanggungan' => $request->tanggungan,
             'chtime' => Carbon::now()->toDateTimeString(),
             'chuser' => Auth::user()->muserName,
         ];
