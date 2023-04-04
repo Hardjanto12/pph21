@@ -53,7 +53,7 @@
                         <td>{{ $item->pengurangpph21 }}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm viewdetails" data-bs-toggle="modal"
-                                data-bs-target="#details" data-id="{{ './bpjs/' . $item->bpjs }}">
+                                data-bs-target="#details" data-id="{{ '/bpjs/' . $item->bpjs }}">
                                 Detail
                             </button>
                             <a href='{{ url('bpjs/' . trim($item->bpjs) . '/edit') }}' class="btn btn-warning btn-sm">Edit</a>
