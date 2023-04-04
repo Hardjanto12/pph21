@@ -1,7 +1,7 @@
 // dvs
 function dvsFunction() {
     popname = window.open(
-        "/dvs/selectdvs",
+        "../dvs/selectdvs",
         "Pilih Divisi",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -15,7 +15,7 @@ function popupCallbackdvs(dvsdata) {
 // jbt
 function jbtFunction() {
     popname = window.open(
-        "/jbt/selectjbt",
+        "../jbt/selectjbt",
         "Pilih Jabatan",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -28,7 +28,7 @@ function popupCallbackjbt(jbtdata) {
 // asr
 function asrFunction() {
     popname = window.open(
-        "/asr/selectasr",
+        "../asr/selectasr",
         "Pilih Asuransi",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -41,7 +41,7 @@ function popupCallbackasr(asrdata) {
 // ktg
 function ktgFunction() {
     popname = window.open(
-        "/ktg/selectktg",
+        "../ktg/selectktg",
         "Pilih Kategori Penghasilan",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -54,7 +54,7 @@ function popupCallbackktg(ktgdata) {
 // ptkp
 function ptkpFunction() {
     popname = window.open(
-        "/ptkp/selectptkp",
+        "../ptkp/selectptkp",
         "Pilih PTKP",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -67,7 +67,7 @@ function popupCallbackptkp(ptkpdata) {
 // cbg
 function cbgFunction() {
     popname = window.open(
-        "/cbg/selectcbg",
+        "../cbg/selectcbg",
         "Pilih Kategori Penghasilan",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -80,7 +80,7 @@ function popupCallbackcbg(cbgdata) {
 // bpjs
 function bpjsFunction() {
     popname = window.open(
-        "/bpjs/selectbpjs",
+        "../bpjs/selectbpjs",
         "Pilih Kategori Penghasilan",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -93,7 +93,7 @@ function popupCallbackbpjs(bpjsdata) {
 // kry
 function kryFunction() {
     popname = window.open(
-        "/kry/selectkry",
+        "../kry/selectkry",
         "Pilih Kategori Karyawan",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
@@ -111,7 +111,7 @@ function popupCallbackkry(krydata) {
 // mgj
 function mgjFunction() {
     popname = window.open(
-        "/mgj/selectmgj",
+        "../mgj/selectmgj",
         "Pilih Penghasilan",
         "status=1, height=600, width=600, toolbar=0,resizable=1"
     );
